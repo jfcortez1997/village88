@@ -1,0 +1,183 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>Algorithms</title>
+</head>
+
+<body>
+    <h1>Algorithm 3</h1>
+    <a href="http://learn.village88.com/m/34/934/4443" target="_blank">Link to assignment</a>
+    <h3><i>Control Shift i to view console</i></h3>
+    <hr>
+    <div>
+        <h2>Useful Links:</h2>
+        <a href="#"></a>
+    </div>
+	<script>
+        console.log("--------------------");
+        console.log("Test 1");
+            function multiply1(x1,y1){
+                console.log(x1);
+                console.log(y1);
+            }
+            b1=multiply1(2,3);
+            console.log(b1);
+                console.log("Answer: 2,3,undefined")
+            
+        console.log("--------------------");
+        console.log("Test 2");
+            function multiply2(x2,y2){
+                return x2*y2;
+            }
+            b2=multiply2(2,3);
+            console.log(b2);
+            console.log(multiply2(5,2));
+                console.log("Answer: 6,10")
+
+        console.log("--------------------");
+        console.log("Test 3");
+            var x1=[1,2,3,4,5,10];
+            for (var i=0; i<5;i++)
+            {
+                i=i+3;
+                console.log(i);
+            }
+                console.log("Answer: 3,7")
+
+        console.log("--------------------");
+        console.log("Test 4");
+            var x2=15;
+            console.log(x2);
+            function awesome(){
+                var x2=10;
+                console.log(x2);
+            }
+            console.log(x2);
+            awesome();
+            console.log(x2);
+                console.log("Answer: 15,15,10,15")
+
+        console.log("--------------------");
+        console.log("Test 5");
+            for (var i=0; i<15;i+=2){
+                    console.log(i);
+                }
+                console.log("Answer: 0,2,4,6,8,10,12,14")
+
+        console.log("--------------------");
+        console.log("Test 6");
+            for (var i=0; i<3;i++){
+                for (var j=0; j<2;j++){
+                    console.log(i*j);
+                }
+            }
+                console.log("Answer: 0,0,0,1,0,2")
+
+        console.log("--------------------");
+        console.log("Test 7");
+            function looping1(x3,y3){
+                for (var i=0; i<x3;i++){
+                    for (var j=0; j<x3;j++){
+                        console.log(i*j);
+                    }
+                }
+            }
+            z1=looping1(3,3);
+            console.log(z1);
+                console.log("Answer: 0,0,0,0,1,2,0,2,4,undefined")
+        
+        console.log("--------------------");
+        console.log("Test 8");
+            function looping2(x4,y4){
+                for (var i=0; i<x4;i++){
+                    for (var j=0; j<y4;j++){
+                        console.log(i*j);
+                    }
+                }
+                return(x4*y4);
+            }
+            z2=looping2(3,5);
+            console.log(z2);
+                console.log("Answer: 0,0,0,0,0,0,1,2,3,4,0,2,4,6,8,15")
+        
+        console.log("");
+        console.log("Part 2");
+        console.log("----------------------------------------");
+        // Please complete the codes below to have the function print all the integers from 1 to x.  If x is negative, have it print/log "negative number" and have the function return false.
+        console.log("printUpTo function:");
+            function printUpTo(x5){
+                if(x5<0){
+                    console.log("negative number");
+                    return false;
+                }else if(x5==0){
+                    console.log("no instruction to 0");
+                }
+                
+                for(var i=1;i<=x5;i++){
+                    console.log(i)
+                }
+                               
+            }
+            console.log("Sample: printUpTo(1000)");
+            console.log("Expected Output: should print all the integers from 1 to 1000");
+            console.log("Result: ");
+                printUpTo(1000);
+            console.log("Sample: printUpTo(-10) and return value");
+            console.log("Expected Output: should print false");
+            console.log("Result: ");
+                y5=printUpTo(-10);
+                console.log(y5);
+
+        console.log("--------------------");
+        // Please complete the code below to have the function print integers from 0 to x and with each integer print the sum so far.  Have the function return the final sum
+        console.log("printSum function:");
+            function printSum(x6){
+                var sum1=0;
+                for(var i=0;i<=x6;i++){
+                    console.log(i);
+                    sum1+=i;
+                    console.log('The sum so far: '+sum1);
+                }
+                return sum1; 
+            }
+            console.log("Sample: printSum(255)");
+            console.log("Expected Output: should print all the integers from 0 to 255 and with each integer print the sum so far and should print 32640 for the final sum");
+            console.log("Result: ");
+                y6=printSum(255); 
+                console.log("Final sum "+y6); 
+            
+        console.log("--------------------");
+        // Please complete the code below to have the function return the sum of all the values in a given array
+        console.log("printSumArray function:");
+            function printSumArray(arr1){
+                var sum2=0;
+                for(var i=0;i<arr1.length;i++){
+                    sum2+=arr1[i];
+                }
+                return sum2;
+            }
+            console.log("Sample: printSumArray([1,2,3])");
+            console.log("Expected Output: should log 6");
+            console.log("Result: ");
+            console.log(printSumArray([1,2,3])); 
+
+        console.log("--------------------");
+        // Create a function that returns the largest element in a given array.
+        console.log("BONUS: LargestElement function:");
+            function largestElement(arr2){
+                var large=arr2[0];
+                for(var i=1;i<arr2.length;i++){
+                    if(large<arr2[i]){
+                        large=arr2[i];
+                    }
+                }
+                return large;
+            }
+            console.log("Sample: largestElement([1,30,5,7,-1,6,5,2,3])");
+            console.log("Expected Output: should return 30");
+            console.log("Result: ");
+            console.log(largestElement([1,30,5,7,-1,6,5,2,3])); 
+	</script>
+</body>
+</html>

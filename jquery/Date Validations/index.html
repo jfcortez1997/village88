@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+   <meta charset="utf-8">
+   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+   <title>My Awesome Webpage</title>
+
+   <!--browser-sync start --server --directory --files "*"-->
+   <link rel="stylesheet" href="style.css">
+
+   <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+   <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+   <script>
+        $(document).ready(function(){
+            $("#checkin").datepicker();
+            $("#checkout").datepicker();
+            $('#book').click(function(){
+            if($('#fullName').val()==""){
+                alert("Please enter your full name")
+            }else if($('#fullName').val()==""){
+                alert("Please enter your full name")
+            }else if($('#checkin').val()==""){
+                alert("Please indicate date of your check-in")
+            }else if($('#checkout').val()==""){
+                alert("Please indicate date of your check-out")
+            }else if($('#checkout').val()<$('#checkin').val()){
+                alert("Invalid date! Please double check your booking date.")
+            }else{
+                alert("Thanks "+$('#fullName').val()+"! Your travel to "+$('#destination').val()+" from "+$('#checkin').val()+" to "+$('#checkout').val()+" is now booked.");
+            }
+            return false;
+        });
+        });
+      
+   </script>      
+</head>
+<body>
+    <h1>Assignment: Date Validations</h1>
+    <form>
+        <h2>Book Now!</h2>
+            <labeL>Destination Name
+            <select id="destination">
+                <option>Palawan</option>
+                <option>Boracay</option>
+                <option>Cebu</option>
+                <option>Bohol</option>
+                <option>Siargao</option>
+            </select>
+            </label>
+            <label>
+                <p>Check-in date: <input type="text" id="checkin"></p>
+            </label>
+            <label>
+                <p>Check-out date: <input type="text" id="checkout"></p>
+            </label>
+            <label>
+                Full Name: <input type="text" id="fullName" placeholder="Enter your full name">
+            </label>
+            <button id="book">Book</button>
+    </form>
+</body>
+</html>

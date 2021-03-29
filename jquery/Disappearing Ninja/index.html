@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+   <meta charset="utf-8">
+   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+   <title>Disappearing Ninja</title>
+   <link rel="stylesheet" href="style.css">
+   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+   <script>
+        $(document).ready(function(){
+            $('img').click(function(){
+                $(this).hide();
+            });
+            $('#restore').click(function(){
+                $('img').show();
+            });
+        }); 
+   </script>
+</head>
+<body>
+   <h1>Assignment: Disappearing Ninja</h1>
+   <img src="https://picsum.photos/200" alt="random image 1">
+   <img src="https://picsum.photos/201" alt="random image 2">
+   <img src="https://picsum.photos/202" alt="random image 3">
+   <img src="https://picsum.photos/203" alt="random image 4">
+   <img src="https://picsum.photos/204" alt="random image 5">
+   <img src="https://picsum.photos/205" alt="random image 6">
+   <img src="https://picsum.photos/206" alt="random image 7">
+   <img src="https://picsum.photos/207" alt="random image 8">
+   <input type="button" id="restore" value="Restore">
+</body>
+</html>

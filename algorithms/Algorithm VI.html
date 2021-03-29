@@ -1,0 +1,99 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>Algorithms</title>
+</head>
+
+<body>
+    <h1>Algorithm 6</h1>
+    <a href="http://learn.village88.com/m/34/934/4446" target="_blank">Link to assignment</a>
+    <h3><i>Control Shift i to view console</i></h3>
+    <hr>
+    <div>
+        <h2>Useful Links:</h2>
+        <a href="#"></a>
+    </div>
+	<script>
+        console.log("--------------------");
+        //Return the given array, after setting any negative values to zero.  For example resetNegatives( [1,2,-1,-3]) should return [1,2,0,0].
+        console.log("Test 1");
+            function resetNegatives(arr1){
+                for(var i=0;i<arr1.length;i++){
+                    if(arr1[i]<0){
+                        arr1[i]=0;
+                    }
+                }
+                return arr1;
+            }
+            console.log("Sample: resetNegatives([1,2,-1,-3])");
+            console.log("Expected Output: setting any negative values to zero in array");
+            console.log("Result: ");
+                sample1= resetNegatives( [1,2,-1,-3]);
+                console.log(sample1);
+                console.log("Additional Sample: resetNegatives([-100,100,-200,200,-300,300]) = ",resetNegatives([-100,100,-200,200,-300,300]));
+            
+        console.log("--------------------");
+        //Given an array, move all values forward by one index, dropping the first and leaving a ‘0’ value at the end.  For example moveForward( [1,2,3]) should return [2,3,0].
+        console.log("Test 2");
+            function moveForward(arr2){
+                var tempArr2=[];
+                h=0;
+                for(var i=0;i<arr2.length;i++){
+                    next=arr2[i+1];
+                    tempArr2[i]=next;
+                }
+                tempArr2[arr2.length-1]=0;
+                return tempArr2;
+            }
+            console.log("Sample: moveForward([1,2,3])");
+            console.log("Expected Output: move all values forward by one index, dropping the first and leaving a ‘0’ value at the end");
+            console.log("Result: ");
+            sample2=moveForward([1,2,3]);
+                console.log(sample2);
+                console.log("Additional Sample: moveForward(['0 index','1 index','2 index','3 index']) = ",moveForward(['0 index','1 index','2 index','3 index']));
+                
+        console.log("--------------------");
+        //Given an array, return an array with values in a reversed order.  For example, returnReversed([1,2,3]) should return [3,2,1].
+        console.log("Test 3");
+            function returnReversed(arr3){
+                for(var i=0;i<arr3.length/2;i++){
+                    reservedVal=arr3[i]
+                    arr3[i] =arr3[arr3.length-1-i];
+                    arr3[arr3.length-1-i] = reservedVal;
+                }
+                return arr3;
+            }
+            console.log("Sample: returnReversed([1,2,3])");
+            console.log("Expected Output: return an array with values in a reversed order");
+            console.log("Result: ");
+            sample3=returnReversed([1,2,3]);
+                console.log(sample3);
+                console.log("Additional Sample: returnReversed([8,7,6,5,-5,-6,-7,-8]) = ",returnReversed([8,7,6,5,-5,-6,-7,-8]));
+        
+        console.log("--------------------");
+        //Create a function that changes a given array to list each original element twice, retaining original order.  Have the function return the new array.  For example repeatTwice([4,”Ulysses”, 42, false]) should return [4,4, “Ulysses”, “Ulysses”, 42, 42, false, false].
+        console.log("Test 4");
+            function repeatTwice(arr4){
+                tempArr4=[];
+                currIndex=0;
+                for(var i=0;i<arr4.length;i++){
+                    // var val=arr4[i];
+                    for(var h=currIndex;h<=currIndex+1;h++){
+                        tempArr4[h]=arr4[i];
+                    }
+                    currIndex+=2;
+                }
+                return tempArr4;
+            }
+            console.log("Sample: repeatTwice([4,\"Ulysses\", 42, false])");
+            console.log("Expected Output: list each original element twice, retaining original order");
+            console.log("Result: ");
+            sample4=repeatTwice([4,"Ulysses", 42, false]);
+                console.log(sample4);
+                console.log("Additional Sample: repeatTwice(['single','double','single','double']) = ",repeatTwice(['single','double','single','double']));
+                       
+
+	</script>
+</body>
+</html>

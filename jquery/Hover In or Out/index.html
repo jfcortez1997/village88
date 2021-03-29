@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+   <meta charset="utf-8">
+   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+   <title>Hover</title>
+   <link rel="stylesheet" href="style.css">
+   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+   <script>
+        $(document).ready(function(){
+            $('img').hover(function(){
+                var newAlt=$(this).attr('src');
+                $(this).attr('src',$(this).attr('data-alt-src'));
+                $(this).attr('data-alt-src',newAlt);
+            },function(){
+                var newAlt=$(this).attr('src');
+                $(this).attr('src',$(this).attr('data-alt-src'));
+                $(this).attr('data-alt-src',newAlt);
+            })
+        });
+   </script>
+</head>
+<body>
+    <h1>Assignment: Hover In/Out</h1>
+    <img src="img/frontend.jpg" data-alt-src="img/backend.jpg" alt="Lion">
+    <img src="img/frontend.jpg" data-alt-src="img/backend.jpg" alt="Lion">
+    <img src="img/frontend.jpg" data-alt-src="img/backend.jpg" alt="Lion">
+    <img src="img/frontend.jpg" data-alt-src="img/backend.jpg" alt="Lion">
+    <img src="img/frontend.jpg" data-alt-src="img/backend.jpg" alt="Lion">
+    <img src="img/frontend.jpg" data-alt-src="img/backend.jpg" alt="Lion">
+    <img src="img/frontend.jpg" data-alt-src="img/backend.jpg" alt="Lion">
+    <img src="img/frontend.jpg" data-alt-src="img/backend.jpg" alt="Lion">
+</body>
+</html>

@@ -1,0 +1,21 @@
+*{
+    margin: 0;
+	padding: 0;
+	border: 0;
+	font-size: 100%;
+	font: inherit;
+	vertical-align: baseline;
+}
+body{
+    padding:10px;
+    width: 1200px;
+}
+h1{
+    font-size: 32px;
+}
+img{
+    width: 220px;
+    height: 200px;
+    display: inline-block;
+    margin: 10px 10px   
+}

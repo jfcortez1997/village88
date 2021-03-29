@@ -1,0 +1,63 @@
+*{
+    margin: 0;
+	padding: 0;
+	border: 0;
+	font-size: 100%;
+	font: inherit;
+	vertical-align: baseline;
+}
+body{
+	margin: 5px;
+}
+a{
+	display: inline-block;
+	text-decoration: none;
+	width: 150px;
+	color: red;
+}
+.sample{
+	margin: 0 60px;
+}
+h6{
+	margin-top: 10px;
+	display: block;
+}
+form{
+	width: 400px;
+}
+label{
+	width: 150px;
+	display: inline-block;
+	margin: 5px;
+}
+label.gender{
+	width: 140px;
+	display: inline-block;
+	margin: 5px;
+	text-align: right;
+}
+.skin{
+	margin: 5px;
+}
+input{
+	border: 1px solid black;
+}
+ul{
+	margin-top: 100px;
+}
+.done a{
+	color: green;
+}
+#confirm{
+	padding: 10px;
+    border-radius: 5px;
+    width: 150px;
+    margin: 20px auto;
+    display: block;
+    background: #003580;
+    color: white;
+}
+h3{
+	font-size: 20px;
+	margin-bottom: 10px;
+}

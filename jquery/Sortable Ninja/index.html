@@ -1,0 +1,27 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Sortable Ninja</title>
+  <link rel="stylesheet" href="style.css">
+  <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+  <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+  <script>
+    $(function() {
+        $("#sortable").sortable();
+        $("#sortable").disableSelection();
+    });
+  </script>
+</head>
+<body>
+    <h1>Sortable Ninja</h1>
+    <ul id="sortable">
+        <li><img src="img/ninja1.png" alt="ninja1"><span class="box"><span class="bar"></span><span class="bar"></span><span class="bar"></span></span></li>
+        <li><img src="img/ninja0.png" alt="ninja0"><span class="box"><span class="bar"></span><span class="bar"></span><span class="bar"></span></span></li>
+        <li><img src="img/ninja4.png" alt="ninja4"><span class="box"><span class="bar"></span><span class="bar"></span><span class="bar"></span></span></li>
+        <li><img src="img/ninja3.png" alt="ninja3"><span class="box"><span class="bar"></span><span class="bar"></span><span class="bar"></span></span></li>
+        <li><img src="img/ninja2.png" alt="ninja2"><span class="box"><span class="bar"></span><span class="bar"></span><span class="bar"></span></span></li>
+    </ul>
+</body>
+</html>

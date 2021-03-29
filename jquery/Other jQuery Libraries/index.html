@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>My Awesome Webpage</title>
+
+    <!--browser-sync start --server --directory --files "*"-->
+    <link rel="stylesheet" href="style.css">
+    <script src="http://code.jquery.com/jquery-1.9.1.js"></script>
+    
+
+    <!-- intend to break down script for better visualization-->
+
+    <!-- alertify --><!-- prompt dialog box for confirmation -->
+        <link rel="stylesheet" href="css/alertify/alertify.core.css" />
+        <link rel="stylesheet" href="css/alertify/alertify.default.css" id="toggleCSS" />
+        <script src="js/alertify.js"></script>
+
+    <!-- parsley --><!-- prompt error if required field is empty -->
+        <link href="./css/parsley/parsley.css" rel="stylesheet">
+        <script src="./js/parsley.js"></script>
+        
+    <!-- alertify, parsley -->
+        <script>
+            $(document).ready(function(){
+                //alertify
+                function reset () {
+                    $("#toggleCSS").attr("href", "css/alertify/alertify.default.css");
+                    alertify.set({
+                        labels : {
+                            ok     : "OK",
+                            cancel : "Cancel"
+                        },
+                        delay : 5000,
+                        buttonReverse : true,
+                        buttonFocus   : "ok"
+                    });
+                };
+                
+                // parsley
+                var executed = 0;
+                var alertfunc=1;
+                $('#confirm').click(function(){
+                    reset();                    
+                    alertify.confirm("Submitting form please confirm", function (e) {
+                        if (e) {
+                            alertify.success("You've clicked OK");
+                            alertify.log("This form is intend for practice and will not continue to submit!");
+                        } else {
+                            alertify.error("You've clicked Cancel");
+                            alertify.log("This form is intend for practice and will not continue to submit!");
+                        }
+                    });
+                    
+                })
+                
+                $('#demo-form').parsley().on('field:validated', function() {
+                        var ok = $('.parsley-error').length === 0;
+                        var field=$('#demo-form').parsley().fields.length-1;
+                        // alert("executed: "+executed+", alertify: "+alertfunc+", ok: "+ok+", field: "+field)
+                        if(ok){
+                            alertfunc++
+                        }
+                        if(executed>field){
+                            executed = 1;
+                            // alertfunc = 1;
+                        }
+                        if(alertfunc==field){  
+                            //alertify    
+
+                            
+                        }
+                        executed++;
+                        return false;
+                });
+            });
+        </script>  
+        
+    <!-- iCHeck --><!-- radio design-->
+        <link href="css/icheck/all.css" rel="stylesheet">
+        <script src="js/icheck.js"></script>
+        <script>
+            $(document).ready(function(){
+              $('.skin-flat input').iCheck({
+                radioClass: 'iradio_flat-red'
+              });
+            });
+        </script>
+
+    <!--  -->
+
+    <!--  -->
+    <!--  -->
+    <!--  -->
+    <!--  -->
+</head>
+<body>
+    <div>
+
+    </div>
+    <form id="demo-form">
+        <label for="fname">First Name*:</label>
+        <input type="text" name="fname" required>
+
+        <label for="lname">Last Name*:</label>
+        <input type="text" name="lname" required>
+
+        <label for="email">Email*:</label>
+        <input type="email" name="email" required>
+
+        <div class="skin skin-flat">
+            <label for="gender">Gender:</label>
+            <input type="radio" name="gender" value="male">Male
+            <input type="radio" name="gender" value="female">Female
+        </div>
+
+        <label for="password">Password*:</label>
+        <input type="password" name="password" required>
+
+        <input type="submit" class="btn btn-default" value="Submit" id="confirm">
+    </form>
+    
+    <ul>
+        <h3>All in green is what I've experimented a bit while red is in progress</h3>
+        <li class="done">
+            <a href="http://fabien-d.github.io/alertify.js/" target="_blank" rel="noopener noreferrer">Alertify</a>
+            <a class="sample" href="C:\SSD Folder Files\Code\Lesson\Coding Dojo Assignments\6. jQuery\Other jQuery Libraries\Libraries\alertify\example\index.html" target="_blank" rel="noopener noreferrer">Sample</a>
+        </li>
+        <li class="done">
+            <a href="http://icheck.fronteed.com/" target="_blank" rel="noopener noreferrer">iCheck</a>
+            <a class="sample" href="C:\SSD Folder Files\Code\Lesson\Coding Dojo Assignments\6. jQuery\Other jQuery Libraries\Libraries\icheck\demo\index.html" target="_blank" rel="noopener noreferrer">Sample</a>
+        </li>
+        <li>
+            <a href="https://github.com/blueimp/jQuery-File-Upload" target="_blank" rel="noopener noreferrer">File Upload</a>
+            <a class="sample" href="C:\SSD Folder Files\Code\Lesson\Coding Dojo Assignments\6. jQuery\Other jQuery Libraries\Libraries\jQuery-File-Upload\index.html" target="_blank" rel="noopener noreferrer">Sample</a>
+        </li>
+        <li>
+            <a href="https://tutorialzine.com/2012/06/beautiful-password-strength-indicator" target="_blank" rel="noopener noreferrer">Password Meter</a>
+            <a class="sample" href="C:\SSD Folder Files\Code\Lesson\Coding Dojo Assignments\6. jQuery\Other jQuery Libraries\Libraries\complexify\index.html" target="_blank" rel="noopener noreferrer">Sample</a>
+        </li>
+        <li>
+            <a href="https://amsul.ca/pickadate.js/" target="_blank" rel="noopener noreferrer">Pick a date</a>
+            <a class="sample" href="C:\SSD Folder Files\Code\Lesson\Coding Dojo Assignments\6. jQuery\Other jQuery Libraries\Libraries\pickadate.js\pickadate.html" target="_blank" rel="noopener noreferrer">Sample</a>
+        </li>
+        <li>
+            <a href="https://github.com/harvesthq/chosen.git" target="_blank" rel="noopener noreferrer">Choose</a>
+            <a class="sample" href="C:\SSD Folder Files\Code\Lesson\Coding Dojo Assignments\6. jQuery\Other jQuery Libraries\Libraries\chosen-1.8.7\public\index.html" target="_blank" rel="noopener noreferrer">Sample</a>
+        </li>
+        <li>
+            <a href="https://github.com/twitter/typeahead.js/" target="_blank" rel="noopener noreferrer">Type ahead</a>
+            <a class="sample" href="C:\SSD Folder Files\Code\Lesson\Coding Dojo Assignments\6. jQuery\Other jQuery Libraries\Libraries\typeahead.js\typeahead.js.html" target="_blank" rel="noopener noreferrer">Sample</a>
+        </li>
+        <li class="done">
+            <a href="http://parsleyjs.org/doc/examples.html" target="_blank" rel="noopener noreferrer">Form validator</a>
+            <a class="sample" href="http://parsleyjs.org/doc/examples/simple.html" target="_blank" rel="noopener noreferrer">Sample</a>
+        </li>
+        <li>
+            <a href="https://github.com/nick-jonas/nick-jonas.github.com/tree/master/windows" target="_blank" rel="noopener noreferrer">Windows</a>
+            <a class="sample" href="C:\SSD Folder Files\Code\Lesson\Coding Dojo Assignments\6. jQuery\Other jQuery Libraries\Libraries\windows\index.html" target="_blank" rel="noopener noreferrer">Sample</a>
+        </li>
+        <li>
+            <a href="https://github.com/nick-jonas/nick-jonas.github.com/tree/master/sliderjs" target="_blank" rel="noopener noreferrer">Image Slider</a>
+            <a class="sample" href="C:\SSD Folder Files\Code\Lesson\Coding Dojo Assignments\6. jQuery\Other jQuery Libraries\Libraries\sliderjs\index.html" target="_blank" rel="noopener noreferrer">Sample</a>
+        </li>
+        <li>
+            <a href="https://github.com/jalxob/cool-kitten" target="_blank" rel="noopener noreferrer">Scroll Parallax</a>
+            <a class="sample" href="C:\SSD Folder Files\Code\Lesson\Coding Dojo Assignments\6. jQuery\Other jQuery Libraries\Libraries\cool-kitten\index.html" target="_blank" rel="noopener noreferrer">Sample</a>
+        </li>
+        <li>
+            <a href="https://github.com/imakewebthings/waypoints" target="_blank" rel="noopener noreferrer">Waypoints Inview</a>
+            <a class="sample" href="C:\SSD Folder Files\Code\Lesson\Coding Dojo Assignments\6. jQuery\Other jQuery Libraries\Libraries\waypoints\Inview.html" target="_blank" rel="noopener noreferrer">Sample</a>
+        </li>
+        <li>
+            <a href="https://github.com/johnpolacek/superscrollorama" target="_blank" rel="noopener noreferrer">Superscrolloma</a>
+            <a class="sample" href="C:\SSD Folder Files\Code\Lesson\Coding Dojo Assignments\6. jQuery\Other jQuery Libraries\Libraries\superscrollorama\index.html" target="_blank" rel="noopener noreferrer">Sample</a>
+        </li>
+        <li>
+            <a href="https://github.com/markdalgleish/stellar.js" target="_blank" rel="noopener noreferrer">Stellar Parallax</a>
+            <a class="sample" href="C:\SSD Folder Files\Code\Lesson\Coding Dojo Assignments\6. jQuery\Other jQuery Libraries\Libraries\stellar.js\index.html" target="_blank" rel="noopener noreferrer">Sample</a>
+        </li>
+        <li>
+            <a href="http://tympanus.net/codrops/2012/01/24/arctext-js-curving-text-with-css3-and-jquery/" target="_blank" rel="noopener noreferrer">ARC Text</a>
+            <a class="sample" href="C:\SSD Folder Files\Code\Lesson\Coding Dojo Assignments\6. jQuery\Other jQuery Libraries\Libraries\arctext\index.html" target="_blank" rel="noopener noreferrer">Sample</a>
+        </li>
+        <li>
+            <a href="https://tutorialzine.com/2012/04/mobile-touch-gallery" target="_blank" rel="noopener noreferrer">Image Effect</a>
+            <a class="sample" href="C:\SSD Folder Files\Code\Lesson\Coding Dojo Assignments\6. jQuery\Other jQuery Libraries\Libraries\touchtouch\index.html" target="_blank" rel="noopener noreferrer">Sample</a>
+        </li>
+        <li>
+            <a href="https://tutorialzine.com/2011/09/jquery-pointpoint-plugin" target="_blank" rel="noopener noreferrer">Cursor Guide</a>
+            <a class="sample" href="C:\SSD Folder Files\Code\Lesson\Coding Dojo Assignments\6. jQuery\Other jQuery Libraries\Libraries\cursor point\index.html" target="_blank" rel="noopener noreferrer">Sample</a>
+        </li>
+        <li>
+            <a href="https://github.com/jordansinger/Hook" target="_blank" rel="noopener noreferrer">Pull to refresh</a>
+            <a class="sample" href="C:\SSD Folder Files\Code\Lesson\Coding Dojo Assignments\6. jQuery\Other jQuery Libraries\Libraries\Hook\index.html" target="_blank" rel="noopener noreferrer">Sample</a>
+        </li>
+        <li>
+            <a href="https://github.com/paulkinzett/toolbar" target="_blank" rel="noopener noreferrer">Toolbar</a>
+            <a class="sample" href="C:\SSD Folder Files\Code\Lesson\Coding Dojo Assignments\6. jQuery\Other jQuery Libraries\Libraries\toolbar\index.html" target="_blank" rel="noopener noreferrer">Sample</a>
+        </li>
+        <li>
+            <a href="https://github.com/hpneo/gmaps" target="_blank" rel="noopener noreferrer">Maps</a>
+            <a class="sample" href="https://hpneo.dev/gmaps/examples.html" target="_blank" rel="noopener noreferrer">Sample</a>
+            
+        </li>
+        <li class="done">
+            <h6>Useful links:</h6>
+            <a href="https://tutorialzine.com/2013/04/50-amazing-jquery-plugins" target="_blank" rel="noopener noreferrer">Link 1</a>
+            <a href="https://designshack.net/articles/javascript/40-awesome-jquery-plugins-you-need-to-check-out/" target="_blank" rel="noopener noreferrer">Link 2</a>
+        </li>
+    </ul>
+
+
+    
+
+
+    
+
+
+
+
+
+
+</body>
+</html>

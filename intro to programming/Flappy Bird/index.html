@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Recreate Flappy Bird</title>
+    <style>
+        body{
+            margin:0;
+            overflow: hidden;
+        }
+        #container{
+            height: 450px;
+            width: 1160px;
+            margin: 0 -100px 0 0;
+            max-width:100%;
+        }
+
+        .background{
+            background: url("flappybird.png");
+            /* background-position: -600px 0px;   */
+            width:290px;
+            height:450px;
+            /* display: inline-block; */
+            margin:0 -8px;
+            vertical-align: middle;
+            position: absolute;
+            overflow: hidden;
+        }
+
+        .floor{ 
+            background: url("flappybird.png");
+            background-position: -300px 0px;  
+            width:290px;
+            height: 50px;
+            
+            margin:0 -8px;
+            vertical-align: middle;
+            position: absolute;
+            overflow: hidden;
+        }
+        .tunnelUp{
+            background: url("flappybird.png");
+            background-position: -600px 0px;  
+            width:60px;
+            height: 270px;
+            right:15px;
+            position: absolute;
+            top: 0px;
+        }
+
+        .tunnelDown{
+            background: url("flappybird.png");
+            background-position: -656px 0px ;  
+            width:60px;
+            height: 270px;
+            right:15px;
+            position: absolute;
+            bottom: -200px;
+        }
+
+        .bird{
+            background: url("flappybird.png");
+            background-position: -340px -240px ;  
+            width:50px;
+            height: 40px;
+            position: fixed;
+            overflow: hidden;
+        }
+        .infoBoard{
+            float: right;
+            background: black;
+            height: 500px;
+            width: 250px;
+            color:white;
+            top:0;
+            right: 0;
+            position: absolute;
+            z-index: 1;
+        }
+
+        h2{
+            margin: 10px 0 0 10px;
+            position: absolute;
+        }
+    </style>
+</head>
+<body>
+    <div id="world">
+        <div id="container">
+            <!-- <div class="background"></div> -->
+        </div>
+        <div id="container2">
+
+
+        </div>
+    </div>
+    <script>
+        var tunnel=[
+            {bottomPx:'start',topPx:'start',leftPx:0},
+            {bottomPx:-75,topPx:-125,leftPx:280},
+            {bottomPx:-200,topPx:0,leftPx:560},
+            {bottomPx:-125,topPx:-75,leftPx:840},
+            {bottomPx:-200,topPx:0,leftPx:1120}
+        ];
+
+        var bird={ 
+            height: 100,
+            rotate: 0
+        }
+        
+        var points=0;
+
+        function tunnelPlacer(){
+            document.getElementById("container").innerHTML='<div class="infoBoard"><h2>Score:<span id="score">0</span></h2></div>';
+            
+            for(var i=0;i<tunnel.length;i++){
+                output='';
+                if(tunnel[i].bottomPx=='start'){
+                    output+='<div class="background" style="left:'+tunnel[i].leftPx+'px"></div>';
+                }else{
+                    output+='<div class="background" style="left:'+tunnel[i].leftPx+'px"><div class="tunnelUp" style="top: '+tunnel[i].topPx+'px"></div><div class="tunnelDown" style="bottom: '+tunnel[i].bottomPx+'px"></div></div>';
+                }
+                document.getElementById("container").innerHTML+=output;
+            }
+            // showMyBirdie();
+        }
+
+        function floorPlacer(){
+            document.getElementById("container2").innerHTML='';
+            for(var i=0;i<tunnel.length;i++){
+                document.getElementById("container2").innerHTML+='<div class="floor"style="left:'+tunnel[i].leftPx+'px"></div>';
+            }
+        }
+        
+
+        function showMyBirdie(){
+            document.getElementById("container").innerHTML+='<div class="bird" style="transform: rotate('+bird.rotate+'deg);left: 160px; top:'+bird.height+'px"></div>';
+        }
+
+        function gravity(){
+            bird.height+=1;
+            if(bird.rotate<20){
+                bird.rotate+=0.5;
+            }
+            if(bird.height>430){
+                document.getElementById("world").innerHTML='<p style="font-size:100px; text-align: center">GameOver<p>'
+            }
+        }
+
+        function collisionDetection(){
+            // per column width 290 - per tunnel width 60 - right 15 = 215px (most left of tunnel)
+            // per column width 290 - right 15 = 275px (most right of tunnel)
+            for(var i=0;i<tunnel.length;i++){
+                var topBorder=(9+(tunnel[i].topPx/25))*25+40;
+                if(tunnel[i].leftPx<-15 && tunnel[i].leftPx>-80){
+                    if(bird.height>topBorder+90 || bird.height<topBorder){
+                        document.getElementById("world").innerHTML='<p style="font-size:100px; text-align: center">GameOver<p>'
+                    }
+                }
+            }   
+        }
+
+        function moveLeft(){
+            for(var i=0;i<tunnel.length;i++){
+                tunnel[i].leftPx-=5;
+            }
+            if(tunnel[1].leftPx<0){
+                for(var i=0;i<tunnel.length-1;i++){
+                    tunnel[i]=tunnel[i+1]                   
+                }
+                
+                x=Math.floor(Math.random()*8)*-1;
+                topPx=x*25;
+                bottomPx= -1*(topPx+200); 
+                tunnel.pop();
+                tunnel.push({'bottomPx':bottomPx,'topPx':topPx,'leftPx':1120});
+                points+=10;
+            }
+            tunnelPlacer();
+            floorPlacer();
+            showMyBirdie();
+            collisionDetection();
+            document.getElementById("score").innerHTML=points;
+        }
+
+        document.onkeydown=function(e){
+            if(e.keyCode==32 &&  bird.height >10){
+                bird.rotate=-20;
+                bird.height-=60;
+                // showMyBirdie();
+            }
+        }
+        
+        setInterval(moveLeft,50);
+        setInterval(gravity,10);
+        tunnelPlacer();
+    
+    
+   
+
+    </script>
+</body>
+</html>

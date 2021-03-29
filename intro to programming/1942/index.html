@@ -1,0 +1,287 @@
+<html>
+<head>
+	<title>1942 Game</title>
+
+<style type="text/css">
+	body{
+		background-color:black;
+	}
+	#container{
+		background: url('background.jpg');
+		width:1000px;
+		height:550px;
+		background-size: cover;
+	}
+	#plane{
+		background: url('1942.gif');
+		background-position: -85px -180px;
+		width:28px;
+		height:28px;
+		position:absolute;
+	}
+	.enemy1{
+		background: url('1942.gif');
+		width:28px;
+		height:28px;
+		position:absolute;
+	}
+	.enemy2{
+		background: url('1942.gif');
+		width:28px;
+		height:28px;
+		position:absolute;
+	}
+	.explosion1{
+		background: url('1942.gif'); 
+		background-position:-30px -40px; 
+		width:28px;
+		height:28px;
+		position:absolute;
+	}
+	.explosion2{
+		background: url('1942.gif'); 
+		background-position:-30px -40px; 
+		width:28px;
+		height:28px;
+		position:absolute;
+	}
+	.explosion3{
+		background: url('1942.gif'); 
+		background-position:-57px -40px;
+		width:28px;
+		height:28px;
+		position:absolute;
+	}
+	.bullet{
+		background: url('1942.gif');
+		background-position: -185px -400px;
+		width:18px;
+		height:18px;
+		position:absolute;
+	}
+	#score{
+		position:absolute;
+		border:10px solid red;
+		top:20px;
+		left:800px;
+		background-color:white;
+		padding:10px;
+		font-size:30px;
+		font-family: Arial;	
+	}
+</style>
+</head>
+<body>
+	<div id='container'>
+		<div id='plane'></div>
+		<div id='enemies'></div>
+		<div id='newEnemies'></div>
+		<div id='bullets'></div>	
+		<div id='explosion'></div>	
+	</div>
+
+	<div id='score'>0</div>
+
+
+<script>
+	var points=0;
+	var topPx,topPy;
+	var plane={
+		x: 545,
+		y: 500
+	}
+
+	var enemies=[{x:550,y:50},{x:150,y:80},{x:380,y:150},{x:900,y:150},{x:600,y:121},{x:456,y:88},{x:350,y:995}];
+	var newEnemies=[];
+	var bullets=[];
+	var explosion=[];
+
+	function displayPlane(){
+		document.getElementById('plane').style['top']=plane.y +"px";
+		document.getElementById('plane').style['left']=plane.x +"px";
+	}
+
+	function fireBullets(){
+		topPx=plane.y-15;
+		leftPx=plane.x+5;
+		bullets.push({x:topPx,y:leftPx});
+		document.getElementById('bullets').innerHTML+="<div class='bullet' style='top:"+topPx+"px; left:"+leftPx+"px;'></div>"
+	}
+
+	function displayEnemies(){
+		var output ='';
+		for(var i=0;i<enemies.length;i++){
+			output+="<div class='enemy1' style='top:"+enemies[i].y+"px; left:"+enemies[i].x+"px;'></div>";
+		}
+		document.getElementById('enemies').innerHTML=output;
+	}
+
+	function displayBullets(){
+		var output ='';
+		for(var i=0;i<bullets.length;i++){
+			output+="<div class='bullet' style='top:"+bullets[i].x+"px; left:"+bullets[i].y+"px;'></div>"
+		}
+		document.getElementById('bullets').innerHTML=output;
+	}
+
+	function addEnemies(){
+		var output ="";
+		var y1=250+Math.floor(Math.random()*500); 
+		output+="<div class='enemy2' style='top:0px; left:"+y1+"px; background-position: -60px -10px;'></div>";
+		newEnemies[newEnemies.length]=({x:0,y:y1});
+		document.getElementById('newEnemies').innerHTML+=output;
+	}
+
+	function displayNewEnemies(){
+		document.getElementById('newEnemies').innerHTML=''
+		var output ='';
+		if(newEnemies.length>0){
+			for(var i=0;i<newEnemies.length;i++){
+				output+="<div class='enemy2' style='top:"+newEnemies[i].x+"px; left:"+newEnemies[i].y+"px; background-position: -60px -10px; '></div>";
+			}
+		}
+		document.getElementById('newEnemies').innerHTML+=output;
+	}
+
+	function movingBullets(){
+		for(var i=0;i<bullets.length;i++){
+			bullets[i].x-=20;
+			if(bullets[i].x<0){
+				bullets[i]=bullets[bullets.length-1]
+				bullets.pop();
+			}
+		}
+		displayBullets();
+	}
+
+	function playAudio() {
+		new Audio("explosion.mp3").play();
+	}
+
+	
+
+	function explosionEffect(){
+		document.getElementById('explosion').innerHTML=''
+		// var output ='';
+		// if(newEnemies.length>0){
+		// 	for(var i=0;i<explosion.length;i++){
+		// 		if(explosion[i].c<4){
+		// 			output+="<div class='explosion"+(explosion[i].c++)+"' style='top:"+enemies[i].y+"px; left:"+enemies[i].x+"px;'></div>"
+		// 		}else{
+		// 			explosion[i]=explosion[explosion.length-1];
+		// 			explosion.pop();
+		// 		}
+		// 	}
+		// }
+		
+		// document.getElementById('explosion').innerHTML+=output;	
+	}
+
+	function detectCollision(){
+		for(var i=0;i<bullets.length;i++){
+			for(var j=0;j<enemies.length;j++){
+				if(	bullets[i].x-enemies[j].y<10 && bullets[i].y-enemies[j].x>0 && bullets[i].y-enemies[j].x<15){ 
+					explosion.push({x:enemies[j].x,y:enemies[j].y,c:1});
+					enemies[j].y+=15;
+					document.getElementById('explosion').innerHTML="<div class='explosion"+1+"' style='top:"+enemies[j].y+"px; left:"+enemies[j].x+"px;'></div>";
+					playAudio();
+					enemies[j]=enemies[enemies.length-1];
+					bullets[i]=bullets[bullets.length-1];
+					enemies.pop();
+					bullets.pop();
+					points+=10;
+					document.getElementById('score').innerHTML=points;
+				}
+			}
+		}
+
+		for(var i=0;i<bullets.length;i++){
+			for(var j=0;j<newEnemies.length;j++){
+				if(	bullets[i].x-newEnemies[j].x<10 && bullets[i].y-newEnemies[j].y>0 && bullets[i].y-newEnemies[j].y<15){ 
+					explosion.push({x:newEnemies[j].x,y:newEnemies[j].y,c:1});
+					newEnemies[j].x+=15;
+					document.getElementById('explosion').innerHTML="<div class='explosion"+1+"' style='top:"+newEnemies[j].x+"px; left:"+newEnemies[j].y+"px;'></div>";
+					playAudio();
+					newEnemies[j]=newEnemies[newEnemies.length-1];
+					bullets[i]=bullets[bullets.length-1];
+					newEnemies.pop();
+
+					bullets.pop();
+					points+=10;
+					document.getElementById('score').innerHTML=points;
+				}
+			}
+		}
+
+		for(var j=0;j<enemies.length;j++){
+			if(	Math.abs(plane.x-enemies[j].x)<10 && Math.abs(plane.y-enemies[j].y)<10){ 
+				points-=500;
+				document.getElementById('score').innerHTML=points;
+				enemies[j]=enemies[enemies.length-1];
+				enemies.pop();
+			}
+		}
+
+		for(var j=0;j<newEnemies.length;j++){
+			if(	Math.abs(plane.x-newEnemies[j].y)<10 && Math.abs(plane.y-newEnemies[j].x)<10){ 
+				points-=500;
+				document.getElementById('score').innerHTML=points;
+				enemies[j]=enemies[enemies.length-1];
+				enemies.pop();
+			}
+		}
+
+	}
+
+	function movingEnemies(){
+		for(var i=0;i<enemies.length;i++){
+			enemies[i].y+=20;
+			if(enemies[i].y>550){
+				enemies[i].y=0;
+				enemies[i].x=Math.ceil(Math.random()*1000);
+			}
+		}
+		displayEnemies();
+
+		for(var i=0;i<newEnemies.length;i++){
+			newEnemies[i].x+=20;
+		}
+
+		for(var i=0;i<newEnemies.length;i++){
+			if(newEnemies[i].x>550){
+				var temp=newEnemies[i];
+				newEnemies[i]=newEnemies[newEnemies.length-1]
+				newEnemies[newEnemies.length-1]=temp
+				newEnemies.pop();
+			}
+		}
+		displayNewEnemies();
+	}
+
+	document.onkeydown=function(e){
+		if(e.keyCode==37 && plane.x>0){
+			plane.x -= 10;
+		}else if(e.keyCode==38 && plane.y>0){
+			plane.y -= 10;
+		}else if(e.keyCode==39 && plane.x<1000){
+			plane.x += 10;
+		}else if(e.keyCode==40 && plane.y<520){
+			plane.y += 10;
+		}else if(e.keyCode==32){
+			fireBullets();
+		}
+		displayPlane();
+	}
+	
+	setInterval(movingEnemies,1000);
+	setInterval(addEnemies,5000);
+	setInterval(movingBullets,50);
+	setInterval(detectCollision,100);
+	setInterval(explosionEffect,1500);
+	displayPlane();
+	displayNewEnemies();
+
+</script>
+
+</body>
+</html>

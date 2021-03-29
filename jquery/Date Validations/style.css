@@ -1,0 +1,83 @@
+*{
+    margin: 0;
+	padding: 0;
+	border: 0;
+	font-size: 100%;
+	font: inherit;
+	vertical-align: baseline;
+}
+body{
+    padding:10px;
+    width: 900px;
+}
+h1{
+    font-size: 32px;
+}
+form{
+    margin: 20px 0 0 20px;
+    background: #4c8da5;
+    padding: 20px;
+    width:200px;
+    border-radius: 5px 20px 5px 20px;
+}
+select{
+    border: 1px solid black;
+}
+input[type=text]{
+    border: 1px solid black;
+    font-size: large;
+    padding: 5px;
+    width: 190px;
+}
+p, h2{
+    margin: 10px 0;
+    padding: 10px 0;
+}
+h2{
+    font-size: 32px;
+}
+#book{
+    padding: 10px;
+    border-radius: 5px;
+    width: 150px;
+    margin: 20px auto;
+    display: block;
+    background: #003580;
+    color: white;
+}
+th{
+    border: 1px solid transparent;
+    text-align: center;
+}
+td{
+    border: 1px solid #17b6f0;
+    background: #4fc0e8;
+    text-align: center;
+    width: 30px;
+    height: 10px;
+}
+.ui-state-default{
+    text-decoration: none;
+    margin: 2px;
+}
+.ui-datepicker-prev{
+    left: 5px;
+    top: 5px;
+    position: absolute;
+}
+.ui-datepicker-next{
+    right: 5px;
+    top: 5px;
+    position: absolute;
+}
+.ui-datepicker-title{
+    background: #4fc0e8;
+    text-align: center;
+    display: block;
+    padding: 5px 0;
+    font-weight: bold;
+    
+}
+#ui-datepicker-div{
+    background: #c2e2ee;
+}

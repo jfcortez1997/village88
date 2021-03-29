@@ -1,0 +1,90 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>Algorithms</title>
+</head>
+
+<body>
+    <h1>Clean Code</h1>
+    <a href="http://learn.village88.com/m/34/934/4492" target="_blank">Link to assignment</a>
+    <br>
+	<textarea rows="12" cols="180">
+    console.log("Test 1");
+            function sUmAlL(a, b){
+                var c =a+b
+                return c;
+            }
+        Rewrite as:
+            function sumAll(a, b){
+                var c =a+b;
+                return c;
+            }
+        Change(s): Capitalize only the first word starting the second word and semi-colon in var c=a+b
+    </textarea>       
+
+    <textarea rows="18" cols="180">
+    console.log("Test 2");
+            function abc(a,b,   c,d, e){
+                var x = a+b;
+                    var y = c+2       var z = d-e
+                
+                return x-y+z; }
+                abc(3,5,10,3,     7);
+        Rewrite as:
+            function abc(a,b,c,d,e){
+                var x = a+b;
+                var y = c+2;   
+                var z = d-e;
+                return x-y+z; 
+            }
+            abc(3,5,10,3,7);
+        Change(s): remove excess spaces in function and constructions, separate all var in new line and put semi-colon, indentation level, closing bracket new line,
+    </textarea>
+
+    <textarea rows="17" cols="180">
+    console.log("Test 3");
+            function abc(a,b,c,   d, e) {
+                for(var i=0; i<a; i++){
+                    b += i;
+                }  return b+d; }
+                abc(1,2,3,4, 5)
+        Rewrite as:
+            function abc(a,b,c,d,e) {
+                for(var i=0; i<a; i++){
+                    b += i;
+                }  
+                return b+d; 
+            }
+            abc(1,2,3,4,5);    
+        Change(s): remove excess spaces in function and constructions, indentation level, closing bracket new line, semi-colon
+    </textarea>
+
+    <textarea rows="18" cols="180">
+    console.log("Test 4");
+            function compare(   a,b  ) {
+                if(a<b) return b
+                    else { return a;
+                } }
+                compare(2,   3 );
+        Rewrite as:
+            function compare(a,b) {
+                if(a<b) {
+                    return b
+                }
+                else { 
+                    return a;
+                } 
+            }
+            compare(2,3);
+        Change(s): remove excess spaces in function and constructions, closing bracket new line, semi-colon, indentation level
+    </textarea>           
+    <hr>
+    <div>
+        <h2>Useful Links:</h2>
+        <a href="#"></a>
+    </div>
+
+
+</body>
+</html>

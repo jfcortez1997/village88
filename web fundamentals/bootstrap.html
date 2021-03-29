@@ -1,0 +1,256 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta charset="utf-8">
+    <title>My Awesome Webpage</title>    
+    <link href="bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BmbxuPwQa2lc/FVzBcNJ7UAyJxM6wuqIj61tLrc4wSX0szH/Ev+nYRRuWlolflfl" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/js/bootstrap.bundle.min.js" integrity="sha384-b5kHyXgcpbZJO/tY9Ul7kGkf1S0CWuKcCD38l8YkeH8z8QjE0GmW1gYU5S9FOnJ0" crossorigin="anonymous"></script>
+
+</head>
+<body>
+
+    <div class="jumbotron" id="jumbo">
+        <h1 class="display-1">Bootstrap</h1>
+        <p class="lead">For today lesson, we are task to get familiar with Bootstrap Framework</p>
+        <p>I first used the Jumbotron, it's simple but elegant looking. I've used it as a page header though bootstrap may have other feature more suitable for header. I think I've usually see this Jumbotron in the middle of a web as an advertisement, if I'm not mistaken. Let's finish with this short practice about Jumbotron and move on to the next bootstrap elements.</p>
+        <h6 id="cont">
+            Before I forgot let's try to build this
+            <a href="#" class="btn">Simple Button</a>
+            by using .btn. Don't be fooled I have said button but it is actually build using &lt;a&gt; tag.
+        </h6>
+    </div>
+    <div class="container">
+        <h2 class="display-2">Containers</h2>
+        <p>As you can see I used &lt;h1&gt; tag in the above word Bootstrap, combining .display-1. Now I've already spot the difference of h1-h6 and display1-2 either combining them both or stand alone. <span class="display-6">To summarize what I learn</span>, for me H# tag is for title and display-# tag is for inline. Combining both can be used as header with more style to show (note that the number range from 1 to 6 only).</p>
+        <h3 id="form">Also,</h3> there's an indentation for the container element of bootstrap. I think that's it, let's move on the next lesson. 
+        <input type="button" class="btn-default" value="Next" onclick="location.href='#form'">
+    </div>
+    <form>
+        <h2 class="display-2">Forms</h2>
+        <label class="form-group">
+            First Name:<input class="form-control" type="text">
+        </label>
+        <div class="form-group">
+            <label for="last-name">Last Name:</label>
+            <input type="text" class="form-control" id="last-name">
+        </div>
+        <label>
+            Email:<input class="form-control" type="text">
+        </label>
+        <div class="form-check">
+            <label>
+                <input type="checkbox" class="form-check-input">
+                You might wondering why it's not of the same length. I tried experimenting a bit, making .form-group combine with div or directly to label tag. Check if you understand.
+            </label>
+        </div>
+        <button type="submit" class="btn-success">Submit</button>
+    </form>
+
+    <h6 id="sum"><span class="display-6">To summarize</span>, .form-control highlighted when active but not so sure in the effect or advantage of .form-group. So, .form-group maybe to wrap label and input tag while .form-control is to highlight.</h6>
+
+    <nav class="navbar navbar-expand-md navbar-dark bg-dark fixed-top">
+        <a href="#" class="navbar-brand">Assignment</a>
+        <button class="navbar-toggler" type="button" data-target="#navbarSupportedContent" > 
+            <!-- data-toggle="collapse"  aria-label="Toggle navigation" aria-controls="navbarSupportedContent" aria-expanded="false"  -->
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav mr-auto">
+                <li class="nav-item">
+                    <a class="nav-link" href="#jumbo">Jumbotron</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#cont">Containers</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#form">Forms</a>
+                </li>
+                <li class="nav-item active">
+                    <a class="nav-link" href="#grid">Grid System</a>
+                </li>
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button">
+                    <!-- data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" -->
+                    Dropdown
+                    </a>
+                    <!-- <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                        <a class="dropdown-item" href="#">Action</a>
+                        <a class="dropdown-item" href="#">Another action</a>
+                        <div class="dropdown-divider"></div>
+                        <a class="dropdown-item" href="#">Something else here</a>
+                    </div> -->
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link disabled" href="#">Disabled</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#sum">Summary</a>
+                </li>
+            </ul>
+
+            <form class="form-inline">
+                <input class="form-control mr-lg-2" type="text" placeholder="Search" aria-label="Search">
+                <button class="btn btn-outline-success" type="submit">Search</button>
+            </form>
+        </div>
+    </nav>
+    <div class="container">
+        <h1>Below is the summary of all the elements I've used:</h1>
+        <div class="row">
+            <div class="col-md-4">
+                <h3>Containers</h3>
+                <div class="col-md-offset-2">
+                    <h6>.container</h6>
+                    <p>It creates a box with padding and marigin in the left and right</p>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <h3>Buttons</h3>
+                <p>I scattered all the buttons</p>
+                <div class="col-md-offset-2">
+                    <h6>.btn</h6>
+                    <p>You can see this button in my Jumbotron section named simple button. I might not prefer to use this because as a button it creates a transparent color so someone might not notice that it's clickable but it has a color effect in border when click.</p>
+                </div>
+                <div class="col-md-offset-2">
+                    <h6>.btn-default </h6>
+                    <p>You can see this button in Containers section. It's normal button and that's all. No effects shows when click.</p>
+                </div>
+                <div class="col-md-offset-2">
+                    <h6>.btn-primary</h6>
+                    <p>I dont know where to include this but it good to know maight be useful to have because I see this often in website.<button class="btn-primary">Learn More</button></p>
+                </div>
+                <div class="col-md-offset-2">
+                    <h6>.btn-success</h6>
+                    <p>You can see this button in Forms section. I think I will be using this in submit button.</p>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <h3>Jumbotron</h3>
+                <div class="col-md-offset-2">
+                    <h6>.jumbotron</h6>
+                    <p>It creates a margin at bottom and padding around. Also, a little gray color background.</p>
+                </div>
+                <div class="col-md-offset-2">
+                    <h6>.display-#</h6>
+                    <p>Good alternative in H1-H6 tag, if you want emphasize some line or words without creating new block.</p>
+                </div>
+                <div class="col-md-offset-2">
+                    <h6>.lead</h6>
+                    <p>I used it as a small introduction or line after the title</p>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <h3>Navbar</h3>
+                <div class="col-md-offset-2">
+                    <h6>.navbar</h6>
+                    <p>This class will make the navigation align horizontal</p>
+                </div>
+                <div class="col-md-offset-2">
+                    <h6>.navbar-expand-{size}</h6>
+                    <p>The navigation in your website will be more flexible. We dont want to show everything when the screen is too small. So it will show as a toggle button and hide the navigation and then unhide when click.</p>
+                </div>
+                <div class="col-md-offset-2">
+                    <h6>.navbar-{dark/light}</h6>
+                    <p>Don't get confused when you indicate dark it should show white. Maybe the word itself refer to the background.</p>
+                </div>
+                <div class="col-md-offset-2">
+                    <h6>.bg-*</h6>
+                    <p>There so many to choose from:
+                        primary, shows color blue preferred to combine with .navbar-dark. secondary, gray family color works on both .navbar-{light/dark}. The following works the same as secondary but differs in background color: success is green, info is light blue, warning is orange, danger is red. white, shows color? owww you're wrong it shows color pink now. Just kidding it's white of course and preferred to combine with .navbar-dark.light, same as white. dark, is for black and transparent is transparent.
+                    </p>
+                </div>
+                <div class="col-md-offset-2">
+                    <h6>.navbar-brand</h6>
+                    <p>Yeah it's a website name and add some link to redirect in home.</p>
+                </div>
+                <div class="col-md-offset-2">
+                    <h6>.navbar-toggler</h6>
+                    <p>This is responsible for transforming your navigation into a button when device-width below minimum. data-target is refer to what content will this button have when activate. I will be skiping the data-toggle, aria-label, aria-controls and aria-expanded as this was advance and not suitable for HTML & CSS lesson. .navbar-toggler-icon this is so important because it will create 3 bar icon in your toggle.Don't forget to create id to refer to the list</p>
+                </div>
+                <div class="col-md-offset-2">
+                    <h6>.collapse & .navbar-collapse</h6>
+                    <p>This is important because this will be responsible for hiding your navigation</p>
+                </div>
+                <div class="col-md-offset-2">
+                    <h6>.navbar-nav</h6>
+                    <p>Make the list in one line</p>
+                </div>
+                <div class="col-md-offset-2">
+                    <h6>.nav-item</h6>
+                    <p>Not sure how it works but I notice this was included for every &lt;li&gt; tag</p>
+                </div>
+                <div class="col-md-offset-2">
+                    <h6>.fixed-top</h6>
+                    <p>I created this and show the navigation below but last minute I change my mind. This class name will stick you nav above.</p>
+                </div>
+                <div class="col-md-offset-2">
+                    <h6>.form-inline</h6>
+                    <p>Makes your form one line</p>
+                </div>
+                <div class="col-md-offset-2">
+                    <h6>.m{t/b/l/r}-{size}-#</h6>
+                    <p>margin top/bottom/left/right can be specify in size and the # is for the width of margin</p>
+                </div>
+                <div class="col-md-offset-2">
+                    <h6>nav-link</h6>
+                    <p>This will remove the default design of a link like this <a href="#" class="nav-link bg-dark" >one</a></p>
+                </div>
+                <div class="col-md-offset-2">
+                    <h6>.dropdown</h6>
+                    <p>This will make your list a dropdown. Element of dropdown: .dropdown-menu item under the dropdown, .dropdown-toggle, this will create a dropdown arrow. We will be skiping data-toggle aria=hashpopup and aria-expanded as this was the advance topic.
+                    </p>
+                </div>
+                <div class="col-md-offset-2">
+                    <h6>.disabled</h6>
+                    <p>make the link disabled</p>
+                </div>
+                <div class="col-md-offset-2">
+                    <h6>.active</h6>
+                    <p>See the Grid System whever you reload the web it always highlighted</p>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <h3>Forms</h3>
+                <div class="col-md-offset-2">
+                    <h6>form-group</h6>
+                    <p>It show no effect to me</p>
+                </div>
+                <div class="col-md-offset-2">
+                    <h6>form-control</h6>
+                    <p>It adds effect when selected in blue highlight</p>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <h3>Grid System</h3>
+                <div class="col-md-offset-2">
+                    <h6>.row</h6>
+                    <p>used to group .col + device-width + # of column out of 12
+                    ex. I used .col-md-4 in this grid so you might see that I create a 3 column table</p>
+                </div>
+                <div class="">
+                    <h6>.col-md-4</h6>
+                    <p>In order to take effect col-md-4 you need to have atleast 764px screen size</p>
+                </div>
+                <div class="">
+                    <h6>.col-md-offset-2</h6>
+                    <p>I experiment a bit, in above I used with and without .col-md-offset-2 (.row & .col-md-4) and I conclude that it's not working, maybe there's a typographcal error in the focus tracker and they meant .offset-md-2. Let me try that below.</p>
+                </div>
+                <div class="offset-md-2">
+                    <h6>.offset-md-2</h6>
+                    <p>I think it works, so it adds indentation when offset-md-2 is used because it skip 2 columns in the left. To prove I will try offset-md-4 below</p>
+                </div>
+                <div class="offset-md-3">
+                    <h6>.offset-md-3</h6>
+                    <p>As you can see it move more column than .offset-md-2 so every additional number in .offset-md-# will add margin of 8.33px(dividing the width into 12 columns)</p>
+                </div>
+            </div>
+        </div>
+        </div>
+    </div>
+    <p class="lead">This sums up all tags and class name that I encountered in Bootstrap but take note that some may not be working because it requires javascript (maybe), it is ugly because I have to test and compared, and lastly this was build only by using Bootstrap functions.</p>
+</body>
+</html>

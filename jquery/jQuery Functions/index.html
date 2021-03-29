@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+   <meta charset="utf-8">
+   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+   <title>jQuery Functions</title>
+   <link rel="stylesheet" href="style.css"> 
+   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+   <script>
+        $(document).ready(function(){
+            $('#hide').click(function(){
+                $('#hideContent').hide();
+            });
+            $('#show').click(function(){
+                $('#hideContent').show();
+            });
+            $('#toggle').click(function(){
+                $('#toggleContent').toggle();
+            });
+            $('#slideDownContent').hide();
+            $('#slideDown').click(function(){
+                if($('#slideDownContent').is(":hidden")){
+                    $('#slideDownContent').slideDown();
+                }else{
+                    $('#slideDownContent').hide();
+                }
+            });
+            $('#slideUp').click(function(){
+                if($('#slideUpContent').is(':hidden')){
+                    $('#slideUpContent').show();
+                }else{
+                    $('#slideUpContent').slideUp(); 
+                }
+            });
+            $('#slideToggle').click(function(){
+                $('#slideToggleContent').slideToggle();
+            });
+            $('#fadeContent').hide();
+            $('#fadeIn').click(function(){
+                $('#fadeContent').fadeIn(1000);
+            });
+            $('#fadeOut').click(function(){
+                $('#fadeContent').fadeOut(1000);
+            });
+            $('#addClass').click(function(){
+                $('#addClassContent').addClass('addClassContent')
+            });
+            $('#before').click(function(){
+                $('#befAndAft').before('<span>I can add element before the set of matched elements&lt;tag&gt; &lt;/tag&gt;</span>');
+            });
+            $('#after').click(function(){
+                $('#befAndAft').after('<span>&lt;tag&gt; &lt;/tag&gt;I can add element after the set of matched elements</span>');
+            });
+            $('#append').click(function(){
+                $('#appendContent').append('<span>&lt;tag&gt; I can add element inside the set of matched elements &lt;/tag&gt;</span>');
+            });
+            $('#attr').change(function(){
+                $('#attrContent').html('Is the checkbox is checked? '+$(this).is(':checked'));
+            });
+            $('#val').keyup(function(){
+                $('#valContent').text('I\'m typing here: '+$('#val').val());
+            });
+        });
+    </script> 
+</head>
+<body>
+    <div>
+        <div class="combined">
+            <input type="button" id="hide" value="hide">
+            <input type="button" id="show" value="show">
+        </div>
+        <p>hide() & show() function<span id="hideContent">Where am I when you click the button?</span></p>
+    </div>
+    <div>
+        <input type="button" id="toggle" value="toggle">
+        <p>toggle() function<span id="toggleContent">This is better to use if you want the element to behave both hide() and show()</span></p>
+    </div>
+    <div>
+        <input type="button" id="slideDown" value="slideDown">
+        <p>slideDown() function<img id="slideDownContent" src="https://picsum.photos/200/300"></p>
+    </div>
+    <div>
+        <input type="button" id="slideUp" value="slideUp">
+        <p>slideUp() function<img id="slideUpContent" src="https://picsum.photos/200/301"></p>
+    </div>
+    <div>
+        <input type="button" id="slideToggle" value="slideToggle">
+        <p>slideToggle() function<span id="slideToggleContent">Hi!</span></p>
+    </div>
+    <div>
+        <div class="combined">
+            <input type="button" id="fadeIn" value="fadeIn">
+            <input type="button" id="fadeOut" value="fadeOut">
+        </div>
+        <p>fadeIn() & fadeOut() function<span id="fadeContent">Helloooooooooooooo!</span></p>
+    </div>
+    <div>
+        <input type="button" id="addClass" value="addClass">
+        <p>addClass() function<span id="addClassContent">Hi, if you click I will turn to Red PERMANENTLYYYYYYY!</span></p>
+    </div>
+    <div>
+        <div class="combined">
+            <input type="button" id="before" value="before">
+            <input type="button" id="after" value="after">
+            <input type="button" id="append" value="append">
+        </div>
+        <p>before() & after() function<span class="emp">How before() function works:</span><span id="befAndAft" class="emp">How after() function works:</span><span id="appendContent" class="emp">How append() function works:</span></p>
+    </div>
+    <div>
+        <input type="checkbox" id="attr">
+        <p>attr() & html() function<span id="attrContent">Is the checkbox is checked?</span></p>
+    </div>
+    <div>
+        <input type="text" id="val" placeholder="Input something here">
+        <p>val() & text() function<span id="valContent">I'm typing here: </span></p>
+    </div>
+    <div class="note">My Personal note: In jQuery the following can be perfectly combined: button with click(), checkbox with change() and text for keyup()</div>
+</body>
+</html>

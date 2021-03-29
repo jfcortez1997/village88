@@ -1,0 +1,89 @@
+*{
+    margin: 0;
+	padding: 0;
+	border: 0;
+	font-size: 100%;
+	font: inherit;
+	vertical-align: baseline;
+}
+
+input[type=button]{
+    width: 200px;
+    height: 50px;
+    color: black;
+    margin: 10px;
+}
+
+h4{
+    border-bottom: 2px solid black;
+    width: 90%;
+    margin: 5px auto;
+    min-height: 100px;
+}
+
+div{
+    border-bottom: 2px solid black;
+    width: 90%;
+    margin: 5px auto;
+    min-height: 100px;
+    font-size: large;
+    padding: 10px;
+    vertical-align: middle;
+}
+
+p{
+    display: inline-block;
+    margin: 10 auto;
+    text-align: center;
+    width: 70%;
+    font-size: 20px;
+    font-weight: bolder;
+    vertical-align: middle;
+}
+
+span{
+    margin: 10px;
+    font-size: 15px;
+    font-weight: normal;
+    display: block;
+}
+img{
+    margin: 10px auto;
+    width: 400px;
+    height:400px;
+    display: block;
+}
+
+.combined{
+    display: inline-block;
+    border-bottom: 0;
+    width: 210px;
+    text-align: left;
+    margin: 0 0 0 -10px;
+}
+.addClassContent{
+    color: red;
+}
+
+.emp{
+    font-weight: bold;
+}
+
+input[type=checkbox]{
+    width: 200px;
+    height: 50px;
+    margin: 10px;
+}
+
+input[type=text]{
+    width: 200px;
+    height: 50px;
+    margin: 10px;
+    padding: 5px;
+    border: 1px solid black;
+}
+
+.note{
+    height: 10px;
+    border: 0;
+}

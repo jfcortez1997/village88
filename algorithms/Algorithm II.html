@@ -1,0 +1,93 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>Algorithms</title>
+</head>
+
+<body>
+    <h1>Algorithm 2</h1>
+    <a href="http://learn.village88.com/m/34/934/4442" target="_blank">Link to assignment</a>
+    <h3><i>Control Shift i to view console</i></h3>
+    <hr>
+    <div>
+        <h2>Useful Links:</h2>
+        <a href="http://www.montereyinstitute.org/courses/DevelopmentalMath/COURSE_TEXT_RESOURCE/U01_L5_T2_text_final.html" target="_blank">Order of operations</a>
+    </div>
+	<script>
+        console.log("--------------------");
+        console.log("Test 1");
+            function a1(){
+                console.log('hello');
+            }
+            console.log('Dojo')
+                console.log("Answer: Dojo")
+            
+        console.log("--------------------");
+        console.log("Test 2");
+            function a2(){
+                console.log('hello');
+                return 15;
+            }
+            x1=a2();
+            console.log('x is',x1)
+                console.log("Answer: hello, x is 15")
+
+        console.log("--------------------");
+        console.log("Test 3");
+            function a3(n){
+                console.log('n is',n);
+                return n+15;
+            }
+            x2=a3(3);
+            console.log('x is',x2)
+                console.log("Answer: n is 3,x is 18")
+
+        console.log("--------------------");
+        console.log("Test 4");
+            function a4(n){
+                    console.log('n is',n);
+                    y=n*2;
+                    return y;
+            }
+            x3=a4(3) + a4(5);
+            console.log('x is',x3)               
+                console.log("Answer: n is 3,n is 5,x is 16")
+
+        console.log("--------------------");
+        console.log("Test 5");
+            function op1(a5,b5){
+                c1=a5+b5;
+                console.log('c is',c1);
+                return c1;
+            }
+            x4=op1(2,3)+op1(3,5);
+            console.log('x is',x4)
+                console.log("Answer: c is 5,c is 8,x is 13")
+
+        console.log("--------------------");
+        console.log("Test 6");
+        function op2(a6,b6){
+                c2=a6+b6;
+                console.log('c is',c2);
+                return c2;
+            }
+            x5=op2(2,3)+op2(3,op2(2,1))+op2(op2(2,1),op2(2,3));//simplify 5+(3,3)+(3,5)
+            console.log('x is',x5)
+                console.log("Answer: c is 5,c is 3,c is 6,c is 3,c is 5,c is 8,x is 19")
+
+        console.log("--------------------");
+        console.log("Test 7");
+            var x =15;
+            function a7(){
+                var x = 10;
+            }
+            console.log(x);
+            a7();
+            console.log(x);
+                console.log("Answer: 15,15")//because 1st no assignment of values and 2nd no return
+       
+
+	</script>
+</body>
+</html>

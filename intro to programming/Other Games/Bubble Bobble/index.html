@@ -1,0 +1,199 @@
+<html>
+<head>
+	<title>Bubble Bobble</title>
+	<style type="text/css">
+	body{
+		background-color:black;
+		color:white;
+		margin:0px;
+	}
+	div.row div{
+		width:16px;
+		height:16px;
+		display:inline-block;
+	}
+	div.empty{
+	}
+	div.block{
+		background:url('block.jpg');
+	}
+	div#player1{
+		background:url('player1.jpg');
+		width:32px;
+		height:32px;
+		position:absolute;
+	}
+	div#enemy1{
+		background:url('enemy1.jpg');
+		width:32px;
+		height:32px;
+		position:absolute;
+		transform: scaleX(-1);
+	}
+	div.bubble{
+		background:url('bubble.jpg');
+		width:32px;
+		height:32px;
+		position:absolute;
+		transform: scaleX(-1);
+	}
+	</style>
+</head>
+<body>
+
+	<div id='world'></div>
+	<div id='characters'></div>
+	<div id='bubbles'></div>
+	<div id='enemies'></div>
+
+	<script type="text/javascript">
+
+	var mapping = {
+		1: 'block',
+		0: 'empty'
+	}
+
+	var bubbles = [];
+
+	var player1 = {
+		x: 100,
+		y: 100
+	}
+
+	var enemy1 = {
+		x: 160,
+		y: 64
+	}
+
+	var world = [
+		[1,1,1,1,1,1,1,0,0,0,0,1,1,1,1,1,1,1,0,0,0,1,1,1,1,1],
+		[1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1],
+		[1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1],
+		[1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1],
+		[1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1],
+		[1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1],
+		[1,0,0,0,0,0,0,0,0,0,1,1,1,1,0,0,0,0,0,0,0,0,0,0,0,1],
+		[1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1],
+		[1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1],
+		[1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1],
+		[1,0,0,0,1,1,1,1,0,0,0,0,0,0,0,0,0,0,1,1,1,1,0,0,0,1],
+		[1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1],
+		[1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1],
+		[1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1],
+		[1,1,1,1,1,1,1,0,0,0,0,1,1,1,1,1,1,1,0,0,0,1,1,1,1,1],
+	];	
+
+	function displayWorld()
+	{
+		var output = '';
+		for(var i=0; i<world.length; i++)
+		{
+			output = output + "<div class='row'>";
+			for(var j=0; j<world[i].length; j++)
+			{
+				output = output + "<div class='"+mapping[world[i][j]]+"'></div>";
+			}
+			output = output + "</div>";
+		}
+		document.getElementById('world').innerHTML = output;
+	}
+
+	function displayPlayers()
+	{
+		document.getElementById('characters').innerHTML = "<div id='player1' style='top:"+player1.y+"px; left:"+player1.x+"px;'></div>";
+	}
+	
+	function displayEnemies()
+	{
+		document.getElementById('enemies').innerHTML = "<div id='enemy1' style='top:"+enemy1.y+"px; left:"+enemy1.x+"px;'></div>";
+	}
+	function displayBubbles()
+	{
+		var output = '';
+		for(var i=0; i<bubbles.length; i++)
+		{
+			output = output + "<div class='bubble' style='top:"+bubbles[i].y+"px; left:"+bubbles[i].x+"px;'></div>";
+		}
+		document.getElementById('bubbles').innerHTML = output;
+	}
+
+	function gameLoop()
+	{
+		moveEnemies();
+		displayEnemies();
+		moveBubbles();
+		displayBubbles();
+		detectCollision();
+	}
+
+	function moveEnemies()
+	{
+		enemy1.x += Math.floor(Math.random()*17)-8;
+	}
+	function moveBubbles()
+	{
+
+		for(var i=0; i<bubbles.length; i++)
+		{
+			if(bubbles[i].x > 400)
+			{
+				bubbles[i] = bubbles[bubbles.length-1];
+				bubbles.pop();
+			}
+		}
+
+		for(var i=0; i<bubbles.length; i++)
+		{
+			bubbles[i].x += 10;
+		}
+	}
+
+	function detectCollision()
+	{
+		for(var i=0; i<bubbles.length; i++)
+		{
+			if(Math.abs(bubbles[i].x-enemy1.x) < 32 && Math.abs(bubbles[i].y-enemy1.y) < 32)
+			{
+				console.log('collided????');
+			}
+		}
+	}
+
+	setInterval(gameLoop, 150);
+
+	displayWorld();
+	displayPlayers();
+
+	document.onkeydown = function(e)
+	{
+		if(e.keyCode == 40)
+		{
+			player1.y += 16;
+		}
+		else if(e.keyCode == 38)
+		{
+			player1.y -= 16;
+		}
+		else if(e.keyCode == 37)
+		{
+			player1.x -= 16;
+		}
+		else if(e.keyCode == 39)
+		{
+			player1.x += 16;
+		}
+		else if(e.keyCode == 32)
+		{
+			bubbles.push({
+				x: player1.x+32,
+				y: player1.y
+			});
+		}
+		console.log("<div id='player1' style='top:"+player1.y+"px; left:"+player1.x+"px;'></div>");
+		displayPlayers();
+		displayBubbles()
+	}
+
+	</script>
+</body>
+</html>

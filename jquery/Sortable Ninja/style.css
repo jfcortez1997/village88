@@ -1,0 +1,41 @@
+*{
+    margin: 0;
+	padding: 0;
+	border: 0;
+	font-size: 100%;
+	font: inherit;
+	vertical-align: baseline;
+}
+body{
+    padding:10px;
+    width: 900px;
+}
+h1{
+    font-size: 32px;
+}
+img{
+    vertical-align: bottom;
+}
+#sortable li{  
+    margin: 0 3px 3px 3px;
+    padding: 0;
+    height: auto;
+    width: 250px;
+    background: #c5c5c5;
+    border-radius: 0 5px 5px 0;
+}
+.box{
+    width:50px;
+    height:30px;
+    left: 210px;
+    position: absolute;
+    padding-top: 5px;
+}
+.bar{
+    width:40px;
+    height:5px;
+    background: white;
+    display: block;
+    margin-top: 5px;
+    border-radius: 5px;
+}

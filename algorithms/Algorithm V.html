@@ -1,0 +1,107 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>Algorithms</title>
+</head>
+
+<body>
+    <h1>Algorithm 5</h1>
+    <a href="http://learn.village88.com/m/34/934/4445" target="_blank">Link to assignment</a>
+    <h3><i>Control Shift i to view console</i></h3>
+    <hr>
+    <div>
+        <h2>Useful Links:</h2>
+        <a href="#"></a>
+    </div>
+	<script>
+        console.log("--------------------");
+        // Given an array and a value Y, count and print the number of array values greater than Y.
+        console.log("Test 1");
+            function gthan(arr1,y){
+                tempArr1=[];
+                for(var i=0;i<arr1.length;i++){
+                    if(arr1[i]>y){
+                        tempArr1.push(arr1[i]);
+                    }
+                }
+                console.log("Count:",tempArr1.length);
+                return tempArr1;
+            }
+            console.log("Sample: gthan([16,4,8,22,44,12,9],10)");
+            console.log("Expected Output: count and print the number of array values greater than Y");
+            console.log("Result: ");
+                sample1=gthan([16,4,8,22,44,12,9],10);
+                console.log(sample1);
+                console.log("Additional Sample: gthan([-9,-8,-99,6,5,23],-10)) = ");
+                console.log(gthan([-9,-8,-99,6,5,23],-10));
+                
+        console.log("--------------------");
+        // Given an array, print the max, min and average values for that array.
+        console.log("Test 2");
+            function threeVal(arr2){
+                var min=arr2[0] ,max= arr2[0], ave = arr2[0], sum=0;
+                console.log(arr2);
+                for(var i=0;i<arr2.length;i++){
+                    curr=arr2[i]
+                    if(curr<min){
+                        min=curr;
+                    }
+                    if(curr>max){
+                        max=curr
+                    }
+                    sum+=curr;
+                }
+                console.log("Min: "+min);
+                console.log("Max: "+max);
+                console.log("Average: "+sum/arr2.length);
+            }
+            console.log("Sample: threeVal([1,7,9,23,99])");
+            console.log("Expected Output: print the max, min and average values for that array");
+            console.log("Result: ");
+                threeVal([1,7,9,23,99]);
+                console.log("Additional Sample: threeVal([1,7,9,23,99]) = ");
+                threeVal([-9,5,6,2,123]);
+
+        console.log("--------------------");
+        // Given an array of numbers, create a function that returns a new array where negative values were replaced with the string ‘Dojo’.   For example, replaceNegatives( [1,2,-3,-5,5]) should return [1,2, "Dojo", "Dojo", 5].
+        console.log("Test 3");
+            function replaceNegative(arr3){
+                for (var i=0;i<arr3.length;i++){
+                    if(arr3[i]<0){
+                        arr3[i]="Dojo";
+                    }
+                }
+                return arr3;
+            }
+            console.log("Sample: replaceNegative([1,2,-3,-5,5])");
+            console.log("Expected Output: negative values were replaced with the string ‘Dojo’");
+            console.log("Result: ");
+                sampleArr3 =replaceNegative([1,2,-3,-5,5]);
+                console.log(sampleArr3);
+                console.log("Additional Sample: replaceNegative([-4,2,5,-8,100,-100,0]) = "+replaceNegative([-4,2,5,-8,100,-100,0]))
+
+        console.log("--------------------");
+        // Given array, and indices start and end, remove values in that index range, working in-place (hence shortening the array).  For example, removeVals([20,30,40,50,60,70],2,4) should return [20,30,70].
+        console.log("Test 4");
+            function removeVals(arr4,min,max){
+                tempArr4=[];
+                var h=0;
+                for(var i=0;i<arr4.length;i++){
+                    if(i<min || i>max){
+                        tempArr4[h]=arr4[i];
+                        h++;
+                    }
+                }
+                return tempArr4;
+            }
+            console.log("Sample: removeVals([20,30,40,50,60,70],2,4)");
+            console.log("Expected Output: remove values in that index range start-end");
+            console.log("Result: ");
+                sample4 =removeVals([20,30,40,50,60,70],2,4);
+                console.log(sample4);
+                console.log("Additional Sample: removeVals([-1,-2,-3,0,\"4th Index\",2,1,6,5,4,\"10th Index\",\"11th Index\"],5,9)) = "+removeVals([-1,-2,-3,0,"4th Index",2,1,6,5,4,"10th Index","11th Index"],5,9));
+
+	</script>
+</body>
+</html>

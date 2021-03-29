@@ -1,0 +1,391 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Recreate Pacman</title>
+    <style>
+        body{
+            /* background-color: black; */
+            margin:0;
+            font-size: 0;
+            
+        }
+        h1{
+            font-size: 64px;
+        }
+        .block{
+            width:32px;
+            height:32px;
+            background-color: rgb(84, 84, 253);
+            
+        }
+        .row div{
+            display:inline-block;
+            width:32px;
+        }
+        .container{
+            /* display:inline-block; */
+        }
+        .coin{
+            background: url("coin.gif");
+            width:32px;
+            height:32px;
+            position:initial;
+            background-size: cover;
+        }
+        .cherry{
+            background: url("cherry.png");
+            width:32px;
+            height:32px;
+            position:initial;
+            background-size: cover;
+            background-position: 50%;
+        }
+        #pacman{
+            background: url("pacman.gif");
+            width:28px;
+            height:28px;
+            position: absolute;
+            background-size: cover;
+            /* background-position: center; */
+            margin: 2px 0 0 2px;
+            transform:rotate(-180deg);
+        }
+        #ghost{
+            background: url("ghost.gif");
+            width:28px;
+            height:28px;
+            position: absolute;
+            background-size: cover;
+            /* background-position: 10% 0 0 0; */
+            margin: 2px 0 0 2px;
+        }
+        .infoBoard p{
+            font-size: 32px;
+            position: absolute;
+            right:10%;
+            top:5%;
+            margin: 10;
+        }
+        ul{
+            float: inherit;
+            font-size: 22px;
+        }
+        li{
+            float: inherit;
+            font-size: 18px;
+        }
+        
+
+    </style>
+</head>
+<body>
+    <div id="container">
+        <div id="world"></div>
+    </div>
+    <div class="infoBoard">
+        <p>Points:<span id="score">0</span></p>
+        <br><br>
+        <ul>
+            <lh>Additional features:</lh>
+            <li>Make the maze a lot bigger and more interesting.</li>
+            <li>Prevent the pacman from moving acros the wall/brick.</li>
+            <li>Have a cherry appear.  Cherry is worth 20 point.</li>
+            <li>Have up to 5 different maze/worlds.  When a page is reloaded, have one of the 5 randomly be chosen and shown on the page.</li>
+            <li>Add ghosts that chase the pacman (keep it simple)</li>
+        </ul>
+    </div>
+    <script>
+        var timer=3000;
+        var verticalMove=1,horizontalMove=1;
+        var rotate=0;
+        var ghostCoordinate=[{x:12,y:29,m:'',lastDirection:''},{x:6,y:16,m:'',lastDirection:''}]
+        var lineReplace;
+        var z=0;
+        var points=0;
+        var pacman={
+            x:32, 
+            y:32 
+        }
+        var ghost={
+            x:32,
+            y:32
+        }
+        var q=Math.floor(Math.random()*5)+1;
+
+        var world={ //separate for easy counting of column 1 10 10 9 1 , respectively  
+            1:  ["2222222222222222222222222222222",
+                "2011111111111111111111111111112",
+                "2122221222212221121211121222212",
+                "2121121200212002121211121211212",
+                "2121121200212002121221121211212",
+                "2121111200212002121222121211112",
+                "2121111200212002121212121211112",
+                "2121111200212002321211221212212",
+                "2121121200212002121211221211212",
+                "2121121200212002121211121211212",
+                "2121121200212002121211121211212",
+                "2122221222212221121211121222212",
+                "2111111111111111111111111111112",
+                "2222222222222222222222222222222"],
+                        
+            2: ["2222222222222222222222222222222",
+                "2000000000000000000000000000002",
+                "2022222000222000220002000002002",
+                "2000200002333202332002000002002",
+                "2000200023333323333202000002002",
+                "2000200023333333333202000002002",
+                "2000200023333333333202000002002",
+                "2000200002333333332002000002002",
+                "2000200000233333320002000002002",
+                "2000200000023333200002000002002",
+                "2000200000002332000000200020002",
+                "2022222000000230000000022200002",
+                "2000000000000000000000000000002",
+                "2222222222222222222222222222222"],
+
+                                
+            3: ["2222222222222222222222222222222",
+                "2011111111111111111111111111112",
+                "2112111112112222222111211211212",
+                "2112111112111112111111211211212",
+                "2112111112111112111111211211212",
+                "2112111112111112111111211211212",
+                "2112222222111112111111211211212",
+                "2112111112111112111111211211212",
+                "2112111112111112111111211211212",
+                "2112111112111112111111211211212",
+                "2112111112111112111111111111112",
+                "2112111112312222222311311311312",
+                "2111111111111111111111111111112",
+                "2222222222222222222222222222222"],
+
+               
+            4: ["2222222222222222222222222222222",
+                "2000000000000000000000000000002",
+                "2000222222222222222222222222202",
+                "2021111111111111111111111111202",
+                "2021222222222222222222222021202",
+                "2021200000000000000000000021202",
+                "2021202322232223222322232021202",
+                "2021202223222322232223222021202",
+                "2021200000000000000000000021202",
+                "2021202222222222222222222221202",
+                "2021111111111111111111111111202",
+                "2022222222222222222222222220202",
+                "2000000000000000000000000000002",
+                "2222222222222222222222222222222"],
+        
+            5: ["2222222222222222222222222222222",
+                "2011111111111111111111111111112",
+                "2133311133113111313113113311312",
+                "2131131311313111313113131131312",
+                "2131131311313311313113131111312",
+                "2133311311313131313113113311312",
+                "2131131311313113313113111131312",
+                "2131131311313111313113131131112",
+                "2133331133113111311331113311312",
+                "2111111111111111111111111111112",
+                "2122222222222222222222222222212",
+                "2111111111111111111111111111112",
+                "2111111111111111111111111111112",
+                "2222222222222222222222222222222"],
+
+        }
+
+        function worldCreate(){
+            document.getElementById('world').innerHTML = '';
+            var output ='';
+            for(var i=0;i<world[q].length;i++){
+                output+='<div class="row">\n';
+                for(var j=0;j<world[q][i].length;j++){
+                    if(world[q][i][j]==3){
+                        output+='<div class="cherry"></div>\n';
+                    }else if(world[q][i][j]==2){
+                        output+='<div class="block"></div>\n';
+                    }else if(world[q][i][j]==1){
+                        output+='<div class="coin"></div>\n';
+                    }else if(world[q][i][j]==0){
+                        output+='<div class=""></div>\n';
+                    }
+                }
+                output+='</div>\n';
+            }
+            document.getElementById('world').innerHTML = output;
+        }
+
+        function showPacman(){
+            document.getElementById('world').innerHTML += '<div id="pacman" style="top:'+(pacman.x*horizontalMove)+'px; left:'+(pacman.y*verticalMove)+'px;transform:rotate('+rotate+'deg)"></div>\n';
+            
+        }
+        
+        function showGhost(){
+            for (var i=0;i<ghostCoordinate.length;i++){
+                document.getElementById('world').innerHTML += '<div id="ghost" style="top:'+(ghost.x*ghostCoordinate[i].x)+'px; left:'+(ghost.y*ghostCoordinate[i].y)+'px"></div>\n';
+            }
+        }
+
+        function ghostMovement(){
+
+            for (var i=0;i<ghostCoordinate.length;i++){
+                var x=Math.floor(Math.random()*2); //0 for x-coordinate, 1 for y-coordinate
+                if(x==0){ 
+                    if(ghostCoordinate[i].y<verticalMove && world[q][ghostCoordinate[i].x][ghostCoordinate[i].y+1]!='2')
+                    {
+                        ghostCoordinate[i].y++;
+                    }else if(ghostCoordinate[i].y>verticalMove && world[q][ghostCoordinate[i].x][ghostCoordinate[i].y-1]!='2'){
+                        ghostCoordinate[i].y--;
+                    }else if(ghostCoordinate[i].x<horizontalMove && world[q][ghostCoordinate[i].x+1][ghostCoordinate[i].y]!='2')
+                    {
+                        ghostCoordinate[i].x++;
+                    }else if(ghostCoordinate[i].x>verticalMove && world[q][ghostCoordinate[i].x-1][ghostCoordinate[i].y]!='2')
+                    {
+                        ghostCoordinate[i].x--;
+                    }
+                }else{
+                    if(ghostCoordinate[i].x<horizontalMove && world[q][ghostCoordinate[i].x+1][ghostCoordinate[i].y]!='2')
+                    {
+                        ghostCoordinate[i].x++;
+                    }else if(ghostCoordinate[i].x>horizontalMove && world[q][ghostCoordinate[i].x-1][ghostCoordinate[i].y]!='2')
+                    {
+                        ghostCoordinate[i].x--;
+                    }else if(ghostCoordinate[i].y<verticalMove && world[q][ghostCoordinate[i].x][ghostCoordinate[i].y+1]!='2'){
+                        ghostCoordinate[i].y++;
+                    }else if(ghostCoordinate[i].y>verticalMove && world[q][ghostCoordinate[i].x][ghostCoordinate[i].y-1]!='2')
+                    {
+                        ghostCoordinate[i].y--;
+                    }
+                
+                }
+            }
+            collideChecker();
+            worldCreate();
+            showPacman();
+            showGhost();
+        }
+
+
+
+        function gameover(){
+            document.getElementById('container').innerHTML ="";
+            document.getElementById('container').innerHTML +="<h1>GAMEOVER</h1>";
+        }
+        
+        function collideChecker(){
+            for(var i=0;i<ghostCoordinate.length;i++){
+                if (pacman.x*horizontalMove==ghost.x*ghostCoordinate[i].x && pacman.y*verticalMove==ghost.y*ghostCoordinate[i].y){
+                    setInterval(gameover,200);
+                }
+               
+            } 
+            
+        }
+        document.onkeydown =function(e){
+            if(e.keyCode==37 && world[q][horizontalMove][verticalMove-1]!=2){//left
+                if(world[q][horizontalMove][verticalMove-1]==1){
+                    lineReplace=world[q][horizontalMove];
+                    newArr=[];
+                    for(var i=0;i<lineReplace.length;i++){
+                        newArr.push(lineReplace[i]);
+                    }
+                    newArr[verticalMove-1]="0"
+                    lineJoin=''
+                    for(var j=0;j<newArr.length;j++){
+                        lineJoin+=newArr[j];
+                    }
+                    world[q][horizontalMove]=lineJoin;
+                    points+=10;
+                }else if(world[q][horizontalMove][verticalMove-1]==3){
+                    lineReplace=world[q][horizontalMove];
+                    newArr=[];
+                    for(var i=0;i<lineReplace.length;i++){
+                        newArr.push(lineReplace[i]);
+                    }
+                    newArr[verticalMove-1]="0"
+                    lineJoin=''
+                    for(var j=0;j<newArr.length;j++){
+                        lineJoin+=newArr[j];
+                    }
+                    world[q][horizontalMove]=lineJoin;
+                    points+=20;
+                }
+                rotate=180;
+                verticalMove--;
+            }else if(e.keyCode==38 && world[q][horizontalMove-1][verticalMove]!=2){//up
+                if(world[q][horizontalMove-1][verticalMove]==1){
+                    // world[q][horizontalMove-1][verticalMove]=0;
+                    lineReplace=world[q][horizontalMove-1];
+                    lineArray=lineReplace.split("");
+                    lineArray[verticalMove]="0";
+                    lineJoin=lineArray.join("");;
+                    world[q][horizontalMove-1]=lineJoin;
+                    points+=10;
+                }else if(world[q][horizontalMove-1][verticalMove]==3){
+                    // world[q][horizontalMove-1][verticalMove]=0;
+                    lineReplace=world[q][horizontalMove-1];
+                    lineArray=lineReplace.split("");
+                    lineArray[verticalMove]="0";
+                    lineJoin=lineArray.join("");;
+                    world[q][horizontalMove-1]=lineJoin;
+                    points+=20;
+                }
+                rotate=-90;
+                horizontalMove--;
+            }else if(e.keyCode==39 && world[q][horizontalMove][verticalMove+1]!=2){//right
+                if(world[q][horizontalMove][verticalMove+1]==1){
+                    // world[q][horizontalMove][verticalMove+1]=0;
+                    lineReplace=world[q][horizontalMove];
+                    lineArray=lineReplace.split("");
+                    lineArray[verticalMove+1]="0";
+                    lineJoin=lineArray.join("");;
+                    world[q][horizontalMove]=lineJoin;
+                    points+=10;
+                }else if(world[q][horizontalMove][verticalMove+1]==3){
+                    // world[q][horizontalMove][verticalMove+1]=0;
+                    lineReplace=world[q][horizontalMove];
+                    lineArray=lineReplace.split("");
+                    lineArray[verticalMove+1]="0";
+                    lineJoin=lineArray.join("");;
+                    world[q][horizontalMove]=lineJoin;
+                    points+=20;
+                }
+                rotate=0;
+                verticalMove++;
+            }
+            else if(e.keyCode==40 && world[q][horizontalMove+1][verticalMove]!=2){//down
+                if(world[q][horizontalMove+1][verticalMove]==1){
+                    // world[q][horizontalMove+1][verticalMove]=0;
+                    lineReplace=world[q][horizontalMove+1];
+                    lineArray=lineReplace.split("");
+                    lineArray[verticalMove]="0";
+                    lineJoin=lineArray.join("");;
+                    world[q][horizontalMove+1]=lineJoin;
+                    points+=10;
+                }else if(world[q][horizontalMove+1][verticalMove]==3){
+                    // world[q][horizontalMove+1][verticalMove]=0;
+                    lineReplace=world[q][horizontalMove+1];
+                    lineArray=lineReplace.split("");
+                    lineArray[verticalMove]="0";
+                    lineJoin=lineArray.join("");;
+                    world[q][horizontalMove+1]=lineJoin;
+                    points+=20;
+                }
+                rotate=90;
+                horizontalMove++;
+            }
+            document.getElementById('score').innerHTML =points;
+            collideChecker()
+            worldCreate();
+            showPacman();
+            showGhost();
+        }
+        setInterval(ghostMovement,200);
+        worldCreate();
+        showPacman();
+        showGhost();
+
+    </script>
+</body>
+</html>

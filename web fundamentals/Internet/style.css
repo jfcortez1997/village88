@@ -1,0 +1,241 @@
+*{
+    margin: 0;
+	padding: 0;
+	border: 0;
+	font-size: 100%;
+	font: inherit;
+	vertical-align: baseline;
+}
+
+.container{
+    width:970px;
+    height:1000px;
+    position: absolute;
+    /* display: inline-block; */
+}
+
+.bar{
+    top: 60px;
+    width:950px;
+    height:50px;
+    background: #3571a3;
+    position: absolute;
+    padding: 10px;
+}
+
+.bar img{
+    top: -60px;
+    width: 80px;
+    height: 80px;
+    position: absolute;
+    display: block;
+}
+
+.bar h1{
+    top: -50px;
+    left: 90px;
+    font-size: 40px;
+    position: absolute;
+    color: #525252;
+}
+
+h2{
+    color:white;
+    font-size: 40px;
+}
+
+.highlight1{
+    color: #2869a0;
+}
+
+.highlight2{
+    color: #db4944;
+}
+
+.linkLight{
+    color: #35c9e1;
+}
+
+.nav{
+    width: 200px;
+    height: 500px;    
+    top: 130px;
+    position: absolute;
+}
+
+h5{
+    font-size: 20px;
+    margin:5px 0 5px 5px;
+    font-weight: bold;
+}
+
+p{
+    font-size: 15px;
+    margin:5px 5px 5px 5px;
+    font-weight: bold;
+}
+
+a{
+    color:white;
+    text-decoration: none;
+    margin-left: 5px;
+}
+
+.wav{
+    width: 90%;
+    height: auto;
+    background: #4883b3;
+    display: inline-block;
+    border-radius: 5px;
+    margin-top: 5px;
+    text-align: center;
+    padding: 10px 0;
+}
+
+.mr{
+    width: 90%;
+    height: auto;
+    background: #ee8501;
+    display: inline-block;
+    border-radius: 5px;
+    margin-top: 5px;
+    text-align: center;
+    padding: 10px 0;
+}
+
+.ads{
+    background-image: url("images/ad_background.png");
+    width: 100%;
+    height: 320px;
+    padding: 10px 0;
+}
+
+.ads p{
+    display: block;
+    color: white;
+    font-size: 25px;
+    text-align: center;
+}
+
+.ads .ninja{
+    width: 100px;
+    height: 150px;
+    margin: 10px auto 20px;
+    display: block;
+}
+
+.ads a{
+    background:  #15c5df;
+    color:  white;
+    padding: 5px 15px;
+    text-align: center;
+    width: 70%;
+    margin: 0 auto;
+    display: block;
+    border-radius: 5px;
+}
+
+.content{
+    width: 750px;
+    height: 500px;    
+    top: 130px;
+    left: 220px;
+    position: absolute;
+}
+
+.content .highlight1{
+    font-size: 22px;
+}
+
+.content p{
+    font-weight: normal;
+}
+
+li{
+    margin-left:40px;
+}
+
+.box{
+    width: 100%;
+    min-height: 50px;
+    border-bottom: 2px solid black;
+    display: block;
+    padding: 20px 0;
+    margin: 0 0 10px 0;
+}
+
+.box img{
+    width:20px;
+    height: 20px;
+    margin: 0 0 0 10px;
+    vertical-align: middle;
+}
+
+.home{
+    font-size: 20px;
+    vertical-align: middle;
+
+}
+
+.contact{
+    width: 200px;
+    display:inline-block;
+    vertical-align: middle;
+    text-align: right;
+    right: 0;
+    position: absolute;
+    margin: -10px 20px 0 0;
+    font-size: 15px;
+}
+
+.contact img{
+    display: inline-block;
+    width: 50px;
+    height: 50px;
+    margin: 10px 0 0 0;
+    right: 180px;
+    position: absolute;
+}
+
+ul img{
+    width: 250px;
+    height: 90px;
+    display: block;
+    margin: 5px auto;
+}
+
+.contact a{
+    display: inline-block;
+    font-weight: bold;
+    font-size: 32px;
+}
+
+.cBox{
+    border:5px solid #2869a0;
+    width: 730px;
+    height: 130px;
+    vertical-align: top;
+    display: inline-block;
+    margin: 5px;
+}
+
+.cBoxRight{
+    height: 100px;
+    width: 590px;
+    top: 520px;
+    right: 0;
+    position: absolute;
+}
+
+.cBox p{
+    width: auto;
+    vertical-align: top;
+}
+
+.cBox img{
+    height: 100px;
+    width: auto;
+    display: inline-block;
+    margin: 10px 0 0 10px;
+}
+

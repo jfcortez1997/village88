@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Recreate Snake</title>
+    <style>
+        body{
+            margin-top: 60px;
+        }
+        #world{
+            background:rgb(51, 136, 51);
+            width:696px;
+            height:396px;
+            border:10px solid black;
+            outline-style: solid;
+            outline-width: 10px;
+            outline-color: rgb(51, 136, 51);
+            position: absolute;
+        }
+        #scoreBoard{
+            top:0;
+            left:0;
+            margin:0;
+            font-size:32px;
+            width:734px;
+            height:50px;
+            text-align: center;
+            background: black;
+            color:white;
+            position: absolute;
+        }
+        .snake{
+            background:black;
+            width:12px;
+            height:12px;
+            position:absolute;
+        }
+        .food{
+            background:black;
+            width:12px;
+            height:12px;
+            position:absolute;
+        }
+        .go{
+            font-size: 100px;
+            text-align: center;
+            top:50px;
+            left:120px;
+            position: absolute;
+        }
+    </style>
+</head>
+<body>
+    <div id="world">
+        <div id="snake"></div>
+        <div id="food"></div>
+    </div>
+    <div id="scoreBoard">Points:<span id="points"></span></div>
+    
+    <script>
+        var snake=[[5,6],[5,7],[5,8],[5,9],[5,10]];
+        var dir=['u','u','u','u','u'];
+        var food //[57,32]
+        var snakeAdd=0;
+        function checkArr(arr1,arr2){
+            var counter=0;
+            for(var i=0;i<arr1.length;i++){
+                if(arr1[i]==arr2){
+                    counter++;
+                }
+            }
+            if(counter>0){
+                return true;
+            }else{
+                return false;
+            }
+        }
+
+        function foodRand(){
+            while(true){
+                var x=Math.floor(Math.random()*58); //width
+                var y=Math.floor(Math.random()*32);  //height
+                if(!checkArr(snake,[x,y])){
+                    food=[x,y];
+                    return;                    
+                }
+            }
+        }
+        
+        foodRand();
+
+        function snakeBody(){
+            var output='';
+            document.getElementById("snake").innerHTML='';
+            
+            for(var i=0;i<snake.length;i++){
+                output+='<div class="snake" style="left:'+snake[i][0]*12+'px; top:'+snake[i][1]*12+'px"></div>'
+            }
+            document.getElementById("snake").innerHTML=output;
+        }
+
+        function snakeFood(){
+            document.getElementById("food").innerHTML='<div class="food" style="left:'+food[0]*12+'px; top:'+food[1]*12+'px"></div>'
+        }
+
+        function moveUp(arr){
+            arr[1]--;
+            if(arr[1]<33 && arr[1]>=0){
+                return arr;
+            }else{
+                document.getElementById('world').innerHTML='<div class="go">GameOver!</div>';
+            }
+        }
+
+        function moveDown(arr){
+           arr[1]++;
+           if(arr[1]<33 && arr[1]>=0){
+                return arr;
+            }else{
+                document.getElementById('world').innerHTML='<div class="go">GameOver!</div>';
+            }
+        }
+
+        function moveLeft(arr){
+            arr[0]--;
+            if(arr[0]<58 && arr[0]>=0){
+                return arr;
+            }else{
+                document.getElementById('world').innerHTML='<div class="go">GameOver!</div>';
+            }
+        }
+
+        function moveRight(arr){
+            arr[0]++;
+            if(arr[0]<58 && arr[0]>=0){
+                return arr;
+            }else{
+                document.getElementById('world').innerHTML='<div class="go">GameOver!</div>';
+            }
+        }
+
+        function passMove(){
+            for(var i=1;i<dir.length;i++){
+                dir[dir.length-i]=dir[dir.length-1-i]
+                // snake[snake.length-i]=snake[snake.length-1-i]
+            }
+        }
+
+        function foodCatcher(){
+            for(var j=0;j<snake.length;j++){
+                if(snake[j]==food){
+                    console.log("hi")
+                    food.pop();
+                    foodRand();
+                    snakeFood();     
+                }    
+            }
+        }
+
+        function extendSnake(){
+            var newArr=[];
+            var addDir=dir[dir.length-1]
+            var points=0
+            console.log(addDir)
+            dir.push(addDir);
+            
+            if(addDir=='u'){
+                newArr=[snake[snake.length-1][0],snake[snake.length-1][1]+1];   
+                console.log(snake,newArr,dir[dir.length-1])         
+                snake.push(newArr);
+            }else if(addDir=='l'){ //ok
+                newArr=[snake[snake.length-1][0]+1,snake[snake.length-1][1]];    
+                console.log(snake,newArr,dir[dir.length-1])        
+                snake.push(newArr);
+            }else if(addDir=='d'){
+                newArr=[snake[snake.length-1][0],snake[snake.length-1][1]-1];
+                console.log(snake,newArr,dir[dir.length-1])    
+                snake.push(newArr);
+            }else if(addDir=='r'){ //ok
+                newArr=[snake[snake.length-1][0]-1,snake[snake.length-1][1]];
+                console.log(snake,newArr,dir[dir.length-1])     
+                snake.push(newArr);
+            }
+            points=(snake.length-5)*10;
+            document.getElementById("points").innerHTML=points;
+        }
+
+        function snakeMove(){
+            for(var i=0;i<snake.length;i++){
+                if(dir[i]=='u'){
+                    snake[i]=moveUp(snake[i]);
+                }else if(dir[i]=='d'){
+                    snake[i]=moveDown(snake[i]);
+                }else if(dir[i]=='l'){
+                    snake[i]=moveLeft(snake[i]);
+                }else if(dir[i]=='r'){
+                    snake[i]=moveRight(snake[i]);
+                }
+            }
+
+            if(snake[0][0]==food[0] && snake[0][1]==food[1]){
+                food.pop();
+                foodRand();
+                snakeFood();   
+                extendSnake();  
+            }
+            passMove();
+            snakeBody();
+        }
+
+        function followMove(x){
+            passMove();
+            if(x!=undefined){
+                dir[0]=x;
+            }
+        }
+
+        document.onkeydown=function(e){
+            if(e.keyCode==37 && dir[0]!="l" && dir[0]!="r"){
+                dir[0]="l";
+            }else if(e.keyCode==38 && dir[0]!="u" && dir[0]!="d"){
+                dir[0]="u";
+            }else if(e.keyCode==39 && dir[0]!="r" && dir[0]!="l"){
+                dir[0]="r";
+            }else if(e.keyCode==40 && dir[0]!="d" && dir[0]!="u"){
+                dir[0]="d";
+            }
+        }
+
+        setInterval(snakeMove,500);
+        snakeFood();
+        snakeBody();
+        
+    </script>
+</body>
+</html>
