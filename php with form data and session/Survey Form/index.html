@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+   <meta charset="utf-8">
+   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+   <title>My Awesome Webpage</title>
+
+   <!--browser-sync start --server --directory --files "*"-->
+   <link rel="stylesheet" href="style.css">
+
+        
+</head>
+<body>
+
+    <form action="form.php" method="POST">
+        <h1>Survey Form</h1>
+        <label for="name">Your Name:</label>
+        <input type="text" name="full_name" id="name"><br>
+        <label for="dojo">Dojo Location:</label>
+            <select name="Dojo Location" id="dojo">
+                <option disabled selected>Select Location...</option>
+                <option value="arlington">Arlington</option>
+                <option value="bellevue">Bellevue</option>
+                <option value="boise">Boise</option>
+                <option value="chicago">Chicago</option>
+                <option value="dallas">Dallas</option>
+                <option value="oakland">Oakland</option>
+                <option value="oc">OC</option>
+                <option value="tulsa">Tulsa</option>
+            </select><br>
+        <label for="language">Favorite Language:</label>
+            <select name="favorite_language" id="language">                
+                <option disabled selected>Select Language...</option>
+                <option value="python">Python</option>
+                <option value="java">Java</option>
+                <option value="javascript">JavaScript</option>
+                <option value="c#">C#</option>
+                <option value="c">C</option>
+                <option value="c++">C++</option>
+                <option value="php">PHP</option>
+                <option value="r">R</option>
+            </select><br>
+        <label for="comment">Comments (optional):</label>        
+        <textarea name="comment" id="comment"></textarea>
+        <input type="submit" value="Submit">
+
+    </form>
+</body>
+</html>
