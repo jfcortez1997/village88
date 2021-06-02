@@ -25,3 +25,4 @@ console.log(git.commit("Added index.html file"));
 
 //6. Push
 console.log(git.push());
+
