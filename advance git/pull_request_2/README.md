@@ -27,4 +27,4 @@ If you find problem combining the codes in central, always recall past lesson. A
 
 Note: Naming convention is so important, not only in codes, but also in naming branches. This makes our branch history very beautiful, yet meaningful. In this case, we want to tell that “Hey! I made a new feature!” -- in indirect way. So, from now on, whenever you’re making new feature, do also the same format in naming a branch: feature/<feature name or id given by your team>.
 
-Good luck! Don't forget to upload necessary screenshots related to each requirement.
+Good luck! Don't forget to upload necessary screenshots related to each requirement
