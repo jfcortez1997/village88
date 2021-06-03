@@ -10,19 +10,22 @@ on:
 jobs:
 
   build:
-    name: Running Units Tests
+    name: Build simple project
     runs-on: ubuntu-latest
     env:
-      working-directory: './continuous integration/survey-form-v2'
+      working-directory: './continuous integration/action_thru_push'
     steps:
-    - name: Checkout code
+    - name: Checkout project
       uses: actions/checkout@v2
+    - name: Use Node.js 
+      uses: actions/setup-node@v1
+    - name: Install dependencies
+      run: npm install
+      working-directory: ${{env.working-directory}}
+
     - name: Build the Docker image
       run: docker-compose --file "docker-compose.yml" up -d --build
 
-
-    - name: Use Node.js
-      uses: action/setup-node@v2
     # - name: List all container   #remove this step once you're done investigating
       # run: echo hello world #docker ps
       
