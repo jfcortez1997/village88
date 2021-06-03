@@ -2,8 +2,8 @@ name: Github Actions Example
 on:
   push:
     branches: 
-        - main
-        - test
+      - main
+      - test
   pull_request:
     branches: 
       - main
