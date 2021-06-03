@@ -1,22 +1,25 @@
+
 name: Github Actions Debug
 
 on:
   push:
-    branches: 
-      - main
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
 
 jobs:
+
   build:
     name: Running Units Tests
     runs-on: ubuntu-latest
     env:
       working-directory: './continuous integration/survey-form-v2'
-
     steps:
     - name: Checkout code
-      uses: action/checkout@v2
-    - name: Compose up the docker
-      run: docker-compose -f "docker-compose.yml" up -d --build
+      uses: actions/checkout@v2
+    - name: Build the Docker image
+      run: docker-compose --file "docker-compose.yml" up -d --build
+
 
     - name: Use Node.js
       uses: action/setup-node@v2
