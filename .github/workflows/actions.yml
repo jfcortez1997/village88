@@ -24,6 +24,9 @@ jobs:
       run: docker-compose -f "docker-compose.yml" up -d --build
       working-directory: ${{env.working-directory}}
 
+    - name: List all container
+      run: docker ps
+
     - name: Run tests from the built image
       run: docker run survey-form sh -c "npm test" 
       working-directory: ${{env.working-directory}}
