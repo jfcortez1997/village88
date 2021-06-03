@@ -10,7 +10,7 @@ class GitCommand {
         return "Initialized as empty Git repository.";
     }
 
-    //Command: git status 
+    //Command: git status
     status(){
         var msg = '' ;
         var num = 0;
