@@ -25,7 +25,7 @@ jobs:
       working-directory: ${{env.working-directory}}
 
     - name: Run tests from the built image
-      run: docker run survey-form sh -c "npm test"
+      run: docker run survey-form sh -c "npm test" 
       working-directory: ${{env.working-directory}}
       
     - name: Compose down the docker
