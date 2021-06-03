@@ -62,7 +62,7 @@ class GitCommand {
     }
 
     //Command: git push
-    push(){   
+    push(){
         if(this.local_repository.length > 0){
             return "Done pushing to remote repository.";
         } 

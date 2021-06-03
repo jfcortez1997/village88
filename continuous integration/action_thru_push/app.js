@@ -1,5 +1,5 @@
-const WorkingDirectory = require("./src/models/working-directory");
-const GitCommand = require("./src/models/git-command");
+const WorkingDirectory = require("./models/working-directory");
+const GitCommand = require("./models/git-command");
 
 //Initialize variables
 let wd = new WorkingDirectory();
@@ -24,4 +24,4 @@ console.log(git.status());
 console.log(git.commit("Added index.html file"));
 
 //6. Push 
-console.log(git.push());
+console.log(git.push()); 
