@@ -15,11 +15,13 @@ jobs:
     steps:
     - name: Checkout code
       uses: action/checkout@v2
+    - name: Use Node.js
+      uses: action/setup-node@v1
+      
+      
     - name: Compose up the docker
       run: docker-compose -f "docker-compose.yml" up -d --build
 
-    - name: Use Node.js
-      uses: action/setup-node@v2
     # - name: List all container   #remove this step once you're done investigating
       # run: echo hello world #docker ps
       
