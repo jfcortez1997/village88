@@ -10,23 +10,23 @@ jobs:
   build:
     name: Running Units Tests
     runs-on: ubuntu-latest
-    # env:
-    #   working-directory: './continuous integration/survey-form-v2'
+    env:
+      working-directory: './continuous integration/survey-form-v2'
     steps:
     - name: Checkout code
-      - uses: action/checkout@v2
+      uses: action/checkout@v2
     - name: Use Node.js
-      - uses: action/setup-node@v2
+      uses: action/setup-node@v2
     - name: Compose up the docker
-      - run: docker-compose -f "docker-compose.yml" up -d --build
-      # - working-directory: ${{end.working-directory}}
+      run: docker-compose -f "docker-compose.yml" up -d --build
+      working-directory: ${{end.working-directory}}
 
 
 
     - name: List all container   #remove this step once you're done investigating
-      - run: echo hello world #docker ps
-
+      run: echo hello world #docker ps
+      working-directory: ${{end.working-directory}}
     - name: Run tests from the built image
-      - run: docker run survey-form sh -c "npm test"
+      run: docker run survey-form sh -c "npm test"
     - name: Compose down the docker
-      - run: docker-compose -f "docker-compose.yml" down
+      run: docker-compose -f "docker-compose.yml" down
