@@ -1,16 +1,17 @@
-# This workflow will do a clean install of node dependencies, build the source code and run tests across different versions of node
-# For more information see: https://help.github.com/actions/language-and-framework-guides/using-nodejs-with-github-actions
-
-name: Node.js CI
+name: Action thru Push
 
 on:
   push:
-    branches: [ main ]
+    branches:
+      - main
+      - test
   pull_request:
-    branches: [ main ]
+    branches:
+      - main
+      - test
     
 jobs:
-  #from build to action thru push (ATP)
+  #action thru push assignment or (ATP)
   ATP:
     name: Build simple project
     runs-on: ubuntu-latest
