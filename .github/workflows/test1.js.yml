@@ -6,17 +6,16 @@ name: Node.js CI
 on:
   push:
     branches: [ main ]
-    paths: 
-      - 'continuous integration/action_thru_push/**'
-    
   pull_request:
     branches: [ main ]
     
 jobs:
-  build:
+  #from build to action thru push (ATP)
+  ATP:
     name: Build simple project
     runs-on: ubuntu-latest
-            # I also tried windows-latest
+    env:
+      working-directory: './continuous integration/action_thru_push/**'
     steps:
     - name: Checkout project
       uses: actions/checkout@v2
@@ -24,5 +23,7 @@ jobs:
       uses: actions/setup-node@v1
     - name: Install dependencies
       run: npm install
+      working-directory: ${{env.working-directory}}
     - name: Test project
       run: npm test
+      working-directory: ${{env.working-directory}}
