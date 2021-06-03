@@ -11,7 +11,7 @@
   "version": "1.0.0",
   "main": "app.js",
   "directories": {
-    "test": "test"
+    "test": "test/test.js"
   },
   "scripts": {
     "test": "npm test"
