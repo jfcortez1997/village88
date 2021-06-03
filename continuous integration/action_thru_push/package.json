@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "main": "app.js",
   "scripts": {
-    "test": "./node_modules/.bin/mocha src/test/test.js"
+    "test": "mocha"
   },
   "keywords": [],
   "author": "",
@@ -17,5 +17,4 @@
   "dependencies": {
     "ci": "^2.1.1"
   }
-  
 }
