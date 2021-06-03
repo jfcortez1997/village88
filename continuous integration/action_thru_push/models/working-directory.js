@@ -16,6 +16,6 @@ class WorkingDirectory{
         };
         this.new_changes = this.files;
     }
-}
+} 
 
 module.exports = WorkingDirectory;
