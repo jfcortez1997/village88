@@ -25,11 +25,11 @@ jobs:
       # run: echo hello world #docker ps
       
 
-    - name: Install dependencies
-      run: npm install
-      working-directory: ${{end.working-directory}}
-    - name: Run tests
-      run: npm run test
+    # - name: Install dependencies
+    #   run: npm install
+    #   working-directory: ${{end.working-directory}}
+    # - name: Run tests
+    #   run: npm run test
 
     - name: Run tests from the built image
       run: docker run survey-form sh -c "npm test"
