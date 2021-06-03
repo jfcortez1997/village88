@@ -11,10 +11,10 @@
   "version": "1.0.0",
   "main": "app.js",
   "directories": {
-    "test": "src"
+    "test": "test/test.js"
   },
   "scripts": {
-    "test": "./node_modules/.bin/mocha src/test/*.test.js"
+    "test": "./node_modules/.bin/mocha src/test/test.js"
   },
   "keywords": [],
   "author": "",
