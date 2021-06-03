@@ -16,11 +16,11 @@ jobs:
     steps:
     - name: Checkout code
       uses: action/checkout@v2
-    - name: Use Node.js
-      uses: action/setup-node@v2
     - name: Compose up the docker
       run: docker-compose -f "docker-compose.yml" up -d --build
-      working-directory: ${{end.working-directory}}
+
+    - name: Use Node.js
+      uses: action/setup-node@v2
     # - name: List all container   #remove this step once you're done investigating
       # run: echo hello world #docker ps
       
@@ -28,11 +28,11 @@ jobs:
     - name: Install dependencies
       run: npm install
       working-directory: ${{end.working-directory}}
-   
+    - name: Run tests
+      run: npm run test
+
     - name: Run tests from the built image
       run: docker run survey-form sh -c "npm test"
-      working-directory: ${{end.working-directory}}
 
     - name: Compose down the docker
       run: docker-compose -f "docker-compose.yml" down
-      working-directory: ${{end.working-directory}}
