@@ -1,4 +1,4 @@
-name: Action thru Push
+name: Action thru PR
 
 on:
   push:
