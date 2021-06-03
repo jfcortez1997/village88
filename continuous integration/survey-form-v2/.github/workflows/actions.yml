@@ -22,8 +22,9 @@ jobs:
       # - working-directory: ${{end.working-directory}}
 
 
+
     - name: List all container   #remove this step once you're done investigating
-      - run: docker ps
+      - run: echo hello world #docker ps
 
     - name: Run tests from the built image
       - run: docker run survey-form sh -c "npm test"
