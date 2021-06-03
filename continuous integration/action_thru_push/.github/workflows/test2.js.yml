@@ -10,7 +10,7 @@ jobs:
   build:
 
     runs-on: windows-latest
-            # I also tried windows-latest
+             # I also tried windows-latest
     strategy:
       matrix:
         node-version: [10.x, 12.x, 14.x, 15.x]
@@ -22,5 +22,6 @@ jobs:
       with:
         node-version: ${{ matrix.node-version }}
     - run: npm ci
+           #I also tried npm install
     - run: npm run build --if-present
     - run: npm test
