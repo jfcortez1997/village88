@@ -4,6 +4,10 @@ on:
     branches: 
         - main
         - test
+  pull_request:
+    branches: 
+      - main
+      - test      
 jobs:
   build:
     name: Build simple project

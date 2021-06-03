@@ -14,7 +14,7 @@
     "test": "./src/test/test.js"
   },
   "scripts": {
-    "test": "./node_modules/.bin/mocha ./src/test/test.js"
+    "test": "./node_modules/.bin/mocha src/test/test.js"
   },
   "keywords": [],
   "author": "",
