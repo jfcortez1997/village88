@@ -12,8 +12,8 @@ jobs:
   build:
     name: Build simple project
     runs-on: ubuntu-latest
-    # env:
-    #   working-directory: './continuous integration/action_thru_push'
+    env:
+      working-directory: './continuous integration/survey-form-v2'
     steps:
     - name: Checkout project
       uses: actions/checkout@v2
@@ -21,11 +21,12 @@ jobs:
       uses: actions/setup-node@v1
     # - name: Install dependencies
     #   run: npm install
-    #   working-directory: ${{env.working-directory}}
+    #   
 
     - name: Compose up the docker
       run: docker-compose -f "docker-compose.yml" up -d --build
-
+      working-directory: ${{env.working-directory}}
+      
     - name: Run tests from the built image
       run: docker run survey-form sh -c "npm test"
     - name: List all container   #remove this step once you're done investigating
