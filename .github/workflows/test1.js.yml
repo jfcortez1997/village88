@@ -15,7 +15,7 @@ jobs:
     name: Build simple project
     runs-on: ubuntu-latest
     env:
-      working-directory: './continuous integration/action_thru_push/**'
+      working-directory: './continuous integration/action_thru_push'
     steps:
     - name: Checkout project
       uses: actions/checkout@v2
