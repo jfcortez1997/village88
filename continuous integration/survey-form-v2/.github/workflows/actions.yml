@@ -1,0 +1,38 @@
+
+name: Github Actions Debug
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+
+jobs:
+
+  build:
+    name: Build simple project
+    runs-on: ubuntu-latest
+    env:
+      working-directory: './continuous integration/survey-form-v2'
+    steps:
+    - name: Checkout project
+      uses: actions/checkout@v2
+    - name: Use Node.js 
+      uses: actions/setup-node@v1
+
+    - name: Compose up the docker
+      run: docker-compose -f "docker-compose.yml" up -d --build
+      working-directory: ${{env.working-directory}}
+
+    - name: List all container
+      run: docker ps
+
+    - name: Run tests from the built image
+      run: docker run survey-form-v2 sh -c "npm test" 
+      working-directory: ${{env.working-directory}}
+      
+    - name: Compose down the docker
+      run: docker-compose -f "docker-compose.yml" down
+      working-directory: ${{env.working-directory}}
+
+
