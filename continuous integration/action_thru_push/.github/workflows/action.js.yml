@@ -11,9 +11,8 @@ on:
       - test
     
 jobs:
-  #action thru push assignment or (ATP)
-  ATP:
-    name: Build simple project
+  build:
+    name: Simple automatic test thru push
     runs-on: ubuntu-latest
     env:
       working-directory: './continuous integration/action_thru_push'
