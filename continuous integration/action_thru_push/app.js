@@ -8,7 +8,6 @@ wd.addFile("index.js", "assets/scripts", "alert('Hi!')");
 
 let git = new GitCommand(wd);
 
-
 //1. Initialize git workspace
 git.init();
 
@@ -24,5 +23,5 @@ console.log(git.status());
 //5. Commit
 console.log(git.commit("Added index.html file"));
 
-//6. Push
-console.log(git.push());
+//6. Push 
+console.log(git.push()); 

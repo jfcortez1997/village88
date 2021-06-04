@@ -23,7 +23,6 @@ class GitCommand {
         }else{
             msg += '\n';
         }
-        
         return `You have ${num} change/s.${msg}`;
     }
 
@@ -63,7 +62,7 @@ class GitCommand {
     }
 
     //Command: git push
-    push(){   
+    push(){
         if(this.local_repository.length > 0){
             return "Done pushing to remote repository.";
         } 
@@ -72,6 +71,5 @@ class GitCommand {
         }     
     }
 }
-
 
 module.exports = GitCommand;

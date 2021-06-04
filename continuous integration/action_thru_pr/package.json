@@ -1,13 +1,14 @@
 {
-  "name": "assignment-git",
+  "name": "action_thru_push",
   "version": "1.0.0",
-  "description": "",
   "main": "app.js",
   "scripts": {
     "test": "mocha"
   },
-  "author": "Karen Marie Igcasan",
+  "keywords": [],
+  "author": "",
   "license": "ISC",
+  "description": "",
   "devDependencies": {
     "chai": "^4.2.0",
     "mocha": "^8.2.1",
