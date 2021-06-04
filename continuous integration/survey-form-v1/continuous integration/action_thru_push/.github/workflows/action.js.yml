@@ -11,7 +11,8 @@ on:
       - test
     
 jobs:
-  build:
+  #action thru push assignment or (ATP)
+  ATP:
     name: Build simple project
     runs-on: ubuntu-latest
     env:
