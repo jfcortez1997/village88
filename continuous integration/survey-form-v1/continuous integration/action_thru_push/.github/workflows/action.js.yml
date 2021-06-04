@@ -1,20 +1,21 @@
-name: Action thru PR
+name: Action thru Push
 
 on:
   push:
     branches:
+      - main
       - test
   pull_request:
     branches:
       - main
-      - develop
+      - test
     
 jobs:
   build:
     name: Build simple project
     runs-on: ubuntu-latest
     env:
-      working-directory: './continuous integration/action_thru_pr'
+      working-directory: './continuous integration/action_thru_push'
     steps:
     - name: Checkout project
       uses: actions/checkout@v2

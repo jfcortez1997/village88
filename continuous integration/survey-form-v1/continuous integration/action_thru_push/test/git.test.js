@@ -4,17 +4,6 @@ const GitCommand = require("../models/git-command");
 const chai = require('chai');
 const expect = chai.expect;
 
-describe("In your local, create 1 additional unit test and make it passed", function(){
-
-    it('Should return "Initialized as empty Git repository." if initialize', function(){
-        let wd = new WorkingDirectory();
-        let git = new GitCommand(wd);
-        let output = git.init();
-
-        expect(output).to.equal('Initialized as empty Git repository.');
-    });
-
-})
 
 describe("Testing GitCommand.status()", function(){
 
