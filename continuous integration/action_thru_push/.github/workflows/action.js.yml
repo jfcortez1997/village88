@@ -15,7 +15,7 @@ jobs:
     name: Simple automatic test thru push
     runs-on: ubuntu-latest
     env:
-      working-directory: 'village88/continuous integration/action_thru_push/'
+      working-directory: './village88/continuous integration/action_thru_push/'
     steps:
     - name: Checkout project
       uses: actions/checkout@v2
