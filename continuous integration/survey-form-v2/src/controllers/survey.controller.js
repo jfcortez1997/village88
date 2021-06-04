@@ -30,7 +30,7 @@ class SurveyController extends Controller {
 
     async process(req, res) {
         await SurveyModel.createSurvey(req.body.name, req.body.dojo_location, req.body.fave_lang, req.body.comment);
-        res.redirect("/success");
+        res.redirect("/success"); 
     }
 }
 module.exports = SurveyController;
