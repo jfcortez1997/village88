@@ -11,7 +11,7 @@ let git = new GitCommand(wd);
 //1. Initialize git workspace
 git.init();
 
-//2. Check status
+//2. Check status 
 console.log(git.status());
 
 //3. Add as index
