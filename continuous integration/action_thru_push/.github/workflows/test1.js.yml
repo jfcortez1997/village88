@@ -1,4 +1,4 @@
-name: Trigger thru push
+name: Action thru Push
 
 on:
   push:
@@ -11,11 +11,12 @@ on:
       - test
     
 jobs:
-  build:
+  #action thru push assignment or (ATP)
+  ATP:
     name: Build simple project
     runs-on: ubuntu-latest
     env:
-      working-directory: './continuous integration/survey-form-v1'
+      working-directory: './continuous integration/action_thru_push'
     steps:
     - name: Checkout project
       uses: actions/checkout@v2
